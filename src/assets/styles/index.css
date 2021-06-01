@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;900&display=swap');
+
+:root {
+  --text-primary: #fafafa;
+  --text-secondary: hsla(0, 0%, 100%, 0.5);
+  --text-nav-color: #dadada;
+
+  --main-color: rgb(65, 21, 101);
+  --main-text: #fafafa;
+
+  --queue-player-popup-bg: #5d218c;
+
+  --layout-bg: #37075d;
+
+  --purple-primary: #ed2b91;
+
+  --search-text: rgba(255, 255, 255, 0.7);
+  --search-bg: hsla(0, 0%, 100%, 0.1);
+
+  --alpha-bg: hsla(0, 0%, 100%, 0.1);
+  --tab-active-bg: hsla(0, 0%, 100%, 0.3);
+  --border-primary: rgba(255, 255, 255, 0.1);
+  --not-selected: rgba(255, 255, 255, 0.2);
+  --icon-bg: rgba(255, 255, 255, 0.1);
+  --blur-album: rgba(0, 0, 0, 0.4);
+}
+* {
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  /* background: #8c00ff; */
+  background: transparent;
+  opacity: 0;
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+  background: #8c00ff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
