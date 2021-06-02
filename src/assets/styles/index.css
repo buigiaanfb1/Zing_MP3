@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&display=swap');
 
 :root {
   --text-primary: #fafafa;
@@ -17,9 +17,12 @@
   --search-text: rgba(255, 255, 255, 0.7);
   --search-bg: hsla(0, 0%, 100%, 0.1);
 
+  --pop-over-bg: rgb(49, 49, 49);
+
   --alpha-bg: hsla(0, 0%, 100%, 0.1);
   --tab-active-bg: hsla(0, 0%, 100%, 0.3);
   --border-primary: rgba(255, 255, 255, 0.1);
+  --border-secondary: rgba(255, 255, 255, 0.05);
   --not-selected: rgba(255, 255, 255, 0.2);
   --icon-bg: rgba(255, 255, 255, 0.1);
   --blur-album: rgba(0, 0, 0, 0.4);
