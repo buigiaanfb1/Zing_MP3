@@ -8,6 +8,10 @@
   --main-color: rgb(65, 21, 101);
   --main-text: #fafafa;
 
+  --player-text: #fff;
+  --play-bar: #6e5283;
+  --play-bar-progress: #fff;
+
   --queue-player-popup-bg: #5d218c;
 
   --layout-bg: #37075d;

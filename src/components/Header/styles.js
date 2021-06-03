@@ -66,8 +66,8 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   avatar: {
-    height: '38px',
-    width: '38px',
+    height: '40px',
+    width: '40px',
     borderRadius: '50%',
   },
 }));
