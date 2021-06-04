@@ -1,25 +1,23 @@
-import { LensTwoTone } from '@material-ui/icons';
 import { projectStorage } from '../config';
-import getUser from './getUser';
+import { getUser } from './getUser';
 
-const { res: user } = getUser();
-
-const useStorage = () => {
-  let url = null;
+export const setStorage = () => {
   let error = null;
   let filePath = null;
+  const { res: user } = getUser();
 
-  const uploadImage = async (file) => {
+  const uploadMusic = async (file) => {
     filePath = `playlists/${user.uid}/${file.name}`;
     const storageRef = projectStorage.ref(filePath);
 
     try {
       const res = await storageRef.put(file);
-      url = await res.ref.getDownloadURL();
+      let url = await res.ref.getDownloadURL();
+      return { url };
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  return { url, error, filePath, uploadImage };
+  return { error, filePath, uploadMusic };
 };

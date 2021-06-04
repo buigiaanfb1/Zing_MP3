@@ -7,7 +7,7 @@ const Volume = () => {
   const classes = useStyles();
   const [volume, setVolume] = useState({
     volume: 0.5,
-    lastVolume: 0,
+    lastVolume: 0.5,
   });
   useEffect(() => {
     document.getElementById('audio').volume = volume.volume;
