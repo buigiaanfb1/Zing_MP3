@@ -12,8 +12,9 @@ import ArrowForwardIosOutlinedIcon from '@material-ui/icons/ArrowForwardIosOutli
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import { Link } from 'react-router-dom';
 
-const Album = () => {
+const Album = ({ albums }) => {
   const classes = useStyles();
   const ref = useRef({});
 
@@ -46,6 +47,9 @@ const Album = () => {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 4,
+    infinite: false,
+    rows: 1,
+    slidesPerRow: 1,
     responsive: [
       {
         breakpoint: 1281,
@@ -57,10 +61,38 @@ const Album = () => {
     ],
   };
 
+  // render methods
+  const handleRenderAlbum = () => {
+    return albums.map((album) => {
+      return (
+        <div className={classes.containerAlbum}>
+          <div className={classes.containerImageAlbum}>
+            <img src={album.cover} className={classes.imageAlbum} />
+            <div className={classes.overlay}>
+              <div className={classes.tools}>
+                <FavoriteBorderOutlinedIcon className={classes.icon} />
+                <div className={classes.iconPlayContainer}>
+                  <PlayArrowIcon className={classes.iconPlay} />
+                </div>
+                <MoreHorizOutlinedIcon className={classes.icon} />
+              </div>
+            </div>
+          </div>
+          <Link to={`/album/${album.id}`}>
+            <div className={classes.containerTitle}>
+              <Typography className={classes.title}>{album.title}</Typography>
+            </div>
+          </Link>
+        </div>
+      );
+    });
+  };
+
   return (
     <div className={classes.container}>
       <Typography className={classes.titleAll}>Gợi Ý Cho Hôm Nay</Typography>
       <Slider {...settings} ref={ref} className={classes.initialSlick}>
+        {handleRenderAlbum()}
         <div className={classes.containerAlbum}>
           <div className={classes.containerImageAlbum}>
             <img src={album1} className={classes.imageAlbum} />
@@ -101,83 +133,7 @@ const Album = () => {
         </div>
         <div className={classes.containerAlbum}>
           <div className={classes.containerImageAlbum}>
-            <img src={album3} className={classes.imageAlbum} />
-            <div className={classes.overlay}>
-              <div className={classes.tools}>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
-                <div className={classes.iconPlayContainer}>
-                  <PlayArrowIcon className={classes.iconPlay} />
-                </div>
-                <MoreHorizOutlinedIcon className={classes.icon} />
-              </div>
-            </div>
-          </div>
-          <div className={classes.containerTitle}>
-            <Typography className={classes.title}>
-              V-Pop Nhạc Mới Nổi Bật
-            </Typography>
-          </div>
-        </div>
-        <div className={classes.containerAlbum}>
-          <div className={classes.containerImageAlbum}>
-            <img src={album4} className={classes.imageAlbum} />
-            <div className={classes.overlay}>
-              <div className={classes.tools}>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
-                <div className={classes.iconPlayContainer}>
-                  <PlayArrowIcon className={classes.iconPlay} />
-                </div>
-                <MoreHorizOutlinedIcon className={classes.icon} />
-              </div>
-            </div>
-          </div>
-          <div className={classes.containerTitle}>
-            <Typography className={classes.title}>
-              V-Pop Nhạc Mới Nổi Bật
-            </Typography>
-          </div>
-        </div>
-        <div className={classes.containerAlbum}>
-          <div className={classes.containerImageAlbum}>
-            <img src={album5} className={classes.imageAlbum} />
-            <div className={classes.overlay}>
-              <div className={classes.tools}>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
-                <div className={classes.iconPlayContainer}>
-                  <PlayArrowIcon className={classes.iconPlay} />
-                </div>
-                <MoreHorizOutlinedIcon className={classes.icon} />
-              </div>
-            </div>
-          </div>
-          <div className={classes.containerTitle}>
-            <Typography className={classes.title}>
-              V-Pop Nhạc Mới Nổi Bật
-            </Typography>
-          </div>
-        </div>
-        <div className={classes.containerAlbum}>
-          <div className={classes.containerImageAlbum}>
             <img src={album2} className={classes.imageAlbum} />
-            <div className={classes.overlay}>
-              <div className={classes.tools}>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
-                <div className={classes.iconPlayContainer}>
-                  <PlayArrowIcon className={classes.iconPlay} />
-                </div>
-                <MoreHorizOutlinedIcon className={classes.icon} />
-              </div>
-            </div>
-          </div>
-          <div className={classes.containerTitle}>
-            <Typography className={classes.title}>
-              V-Pop Nhạc Mới Nổi Bật
-            </Typography>
-          </div>
-        </div>
-        <div className={classes.containerAlbum}>
-          <div className={classes.containerImageAlbum}>
-            <img src={album4} className={classes.imageAlbum} />
             <div className={classes.overlay}>
               <div className={classes.tools}>
                 <FavoriteBorderOutlinedIcon className={classes.icon} />

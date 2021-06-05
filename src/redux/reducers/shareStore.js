@@ -1,9 +1,13 @@
-import { IS_USER_LOGIN } from '../../Templates/Clients/Home/modules/constants';
+import {
+  FETCH_ALBUMS,
+  IS_USER_LOGIN,
+} from '../../Templates/Clients/Home/modules/constants';
 import { CLOSE_QUEUE, OPEN_QUEUE } from '../action/action';
 
 const initialState = {
   user: null,
   openQueue: false,
+  albums: null,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -17,6 +21,10 @@ export default (state = initialState, { type, payload }) => {
 
     case CLOSE_QUEUE:
       state.openQueue = false;
+      return { ...state };
+
+    case FETCH_ALBUMS:
+      state.albums = payload;
       return { ...state };
 
     default:

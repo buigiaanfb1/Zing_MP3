@@ -82,6 +82,7 @@ export const useStyles = makeStyles((theme) => ({
   imageAlbum: {
     maxWidth: '100%',
     transition: 'all 0.5s ease-in-out',
+    maxHeight: '100%',
     '&:hover': {
       transform: 'scale(1.08)',
     },

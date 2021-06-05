@@ -68,6 +68,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.slick-track {
+  min-width: 1280px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

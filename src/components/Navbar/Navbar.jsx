@@ -10,6 +10,7 @@ import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import OndemandVideoOutlinedIcon from '@material-ui/icons/OndemandVideoOutlined';
 import { Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -17,7 +18,9 @@ const Navbar = () => {
     <div className={classes.bgColor}>
       <div className={classes.container}>
         <div>
-          <img src={LogoDark} className={classes.logo} />
+          <Link to="/">
+            <img src={LogoDark} className={classes.logo} />
+          </Link>
         </div>
         <div className={classes.tools}>
           <div className={classes.tool}>
