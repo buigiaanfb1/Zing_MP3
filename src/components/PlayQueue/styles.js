@@ -37,7 +37,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '12px',
     fontWeight: '700',
     borderRadius: '999px',
-    padding: '5px 12px',
+    padding: '5px 10px',
     cursor: 'pointer',
     color: 'rgba(255,255,255,0.6)',
     // backgroundColor: 'var(--tab-active-bg)',
@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '12px',
     fontWeight: '700',
     borderRadius: '999px',
-    padding: '5px 12px',
+    padding: '5px 10px',
     cursor: 'pointer',
     backgroundColor: 'var(--tab-active-bg)',
   },
@@ -110,5 +110,14 @@ export const useStyles = makeStyles((theme) => ({
     maxHeight: '40px',
     borderRadius: '4px',
     marginRight: '10px',
+    width: '100%',
+  },
+
+  bodyScroll: {
+    position: 'absolute',
+    inset: '0',
+    overflow: 'hidden auto',
+    marginRight: '-0px',
+    marginBottom: '0px',
   },
 }));

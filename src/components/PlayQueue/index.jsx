@@ -2,16 +2,58 @@ import { Typography } from '@material-ui/core';
 import React from 'react';
 import AccessAlarmsOutlinedIcon from '@material-ui/icons/AccessAlarmsOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
-import queue1 from '../../assets/images/queue1.jpeg';
-import queue2 from '../../assets/images/queue2.jpeg';
+import defaultCoverSong from '../../assets/images/defaultCoverSong.png';
 import { useStyles } from './styles';
+import { useSelector, useDispatch } from 'react-redux';
+import { SELECTED_SONG } from '../../Templates/Clients/Album/modules/constants';
 
 const PlayerQueue = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const album = useSelector((state) => state.shareStore.selectedAlbum);
+
+  const handleDispatchSong = (song) => {
+    console.log(song);
+    dispatch({
+      type: SELECTED_SONG,
+      payload: song,
+    });
+  };
+
+  const handleRenderPlayerQueue = () => {
+    if (album) {
+      return album.songs?.map((song, index) => {
+        return (
+          <div
+            className={`${
+              song?.isSelected
+                ? classes.musicContainerSelected
+                : classes.musicContainer
+            }`}
+            key={index}
+            onClick={() => handleDispatchSong(song)}
+          >
+            <img
+              src={song.picture ? song.picture : defaultCoverSong}
+              className={classes.img}
+            />
+            <div className={classes.containerTitleAuthor}>
+              <Typography className={classes.title}>
+                {song.title.length > 30
+                  ? song.title.substr(0, 27) + '...'
+                  : song.title}
+              </Typography>
+              <Typography className={classes.author}>{song.artist}</Typography>
+            </div>
+          </div>
+        );
+      });
+    }
+  };
 
   return (
-    <div className={classes.container}>
-      <div className={classes.wrapper}>
+    <div className={`${classes.container}`}>
+      <div className={`${classes.wrapper} ${classes.bodyScroll}`}>
         <div className={classes.navbar}>
           <div className={classes.textContainer}>
             <Typography className={classes.textSelected}>
@@ -26,20 +68,7 @@ const PlayerQueue = () => {
             <MoreHorizOutlinedIcon className={classes.icon} />
           </div>
         </div>
-        <div className={classes.musicContainer}>
-          <img src={queue1} className={classes.img} />
-          <div className={classes.containerTitleAuthor}>
-            <Typography className={classes.title}>Sing me to sleep</Typography>
-            <Typography className={classes.author}>Alan Walker</Typography>
-          </div>
-        </div>
-        <div className={classes.musicContainerSelected}>
-          <img src={queue2} className={classes.img} />
-          <div className={classes.containerTitleAuthor}>
-            <Typography className={classes.title}>Until You</Typography>
-            <Typography className={classes.author}>JavaScript</Typography>
-          </div>
-        </div>
+        {handleRenderPlayerQueue()}
       </div>
     </div>
   );

@@ -115,4 +115,9 @@ export const useStyles = makeStyles((theme) => ({
     width: '20px',
     height: '20px',
   },
+
+  a: {
+    textDecoration: 'none',
+    color: 'var(--text-primary)',
+  },
 }));

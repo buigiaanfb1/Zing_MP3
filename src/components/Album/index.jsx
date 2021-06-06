@@ -78,7 +78,7 @@ const Album = ({ albums }) => {
               </div>
             </div>
           </div>
-          <Link to={`/album/${album.id}`}>
+          <Link to={`/album/${album.id}`} className={classes.a}>
             <div className={classes.containerTitle}>
               <Typography className={classes.title}>{album.title}</Typography>
             </div>

@@ -81,7 +81,7 @@ export const useStyles = makeStyles((theme) => ({
   icon: {
     width: '16px',
     height: '16px',
-    marginLeft: '1rem',
+    marginLeft: '0.5rem',
   },
 
   rangeContainer: {

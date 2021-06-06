@@ -31,8 +31,8 @@ export const setStorage = () => {
     }
   };
 
-  const uploadCoverAlbum = async (file) => {
-    filePath = `cover/${file.name}/${file.name}`;
+  const uploadCoverAlbum = async (file, albumTitle) => {
+    filePath = `cover/${albumTitle}/${file.name}`;
     const storageRef = projectStorage.ref(filePath);
     try {
       const res = await storageRef.put(file);
@@ -47,7 +47,9 @@ export const setStorage = () => {
     filePath = `imageSongs/${titleSong}`;
     const storageRef = projectStorage.ref(filePath);
     try {
-      const res = await storageRef.put(file);
+      const res = await storageRef.putString(file, 'data_url', {
+        contentType: 'image/jpg',
+      });
       let url = await res.ref.getDownloadURL();
       return { url };
     } catch (err) {

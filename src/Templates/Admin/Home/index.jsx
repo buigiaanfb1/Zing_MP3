@@ -60,16 +60,24 @@ const Home = () => {
         .join('-');
 
       // lấy url để add vào doc
-      const { url: coverUrl } = await uploadCoverAlbum(content.cover);
+      const { url: coverUrl } = await uploadCoverAlbum(
+        content.cover,
+        titlePath
+      );
       for (const file of content.songs) {
         // lấy url để add vào doc
         const { url: songUrl } = await uploadMusicAdmin(file, titlePath);
         const info = await parseSongMp3(file);
-        const { url: imgSongUrl } = await uploadImageSong(
-          info.picture,
-          titlePath
-        );
-        arrSongs.push({ ...info, song: songUrl, picture: imgSongUrl });
+        if (info?.picture) {
+          console.log(info.picture);
+          const { url: imgSongUrl } = await uploadImageSong(
+            info.picture,
+            titlePath
+          );
+          arrSongs.push({ ...info, song: songUrl, picture: imgSongUrl });
+        } else {
+          arrSongs.push({ ...info, song: songUrl, picture: '' });
+        }
       }
       // add Doc
       const res = await addDoc({
