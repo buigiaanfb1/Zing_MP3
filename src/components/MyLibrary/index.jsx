@@ -1,10 +1,12 @@
 import { Typography } from '@material-ui/core';
-import React from 'react';
+import React, { useMemo } from 'react';
 import Songs from './Songs';
+import { getUser } from '../../firebase/tools/getUser';
 import { useStyles } from './styles';
 
 const MyLibrary = () => {
   const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <div className={classes.menu}>

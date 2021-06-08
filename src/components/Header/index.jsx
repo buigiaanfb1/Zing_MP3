@@ -1,69 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { login } from '../../firebase/tools/useLogin';
 import { useStyles } from './styles';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import CallReceivedIcon from '@material-ui/icons/CallReceived';
+import CallMadeIcon from '@material-ui/icons/CallMade';
 import SearchBar from '../SearchBar';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloudUploadOutlinedIcon from '@material-ui/icons/CloudUploadOutlined';
 import defaultAvatar from '../../assets/images/defaultAvatar.png';
 import { getUser } from '../../firebase/tools/getUser';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { setStorage } from '../../firebase/tools/setStorage';
-import { setCollection } from '../../firebase/tools/setCollection';
-import { timestamp } from '../../firebase/config';
-import { checkDocIfExist } from '../../firebase/tools/checkDoc';
-import { updateDoc } from '../../firebase/tools/updateDoc';
+import { uploadMusicPrivate } from '../../firebase/tools/uploadMusicPrivate';
+import PopOver from '../PopOver';
+import notify from '../../common/toastify';
 
 const Header = ({ isScrollMoreThanZero }) => {
   console.log('header');
   const classes = useStyles();
+  let history = useHistory();
+  const [goBack, setGoBack] = useState(null);
   const { res: user } = getUser();
+
+  useEffect(() => {
+    if (history.location.pathname !== '/') {
+      // history.goBack();
+      setGoBack(true);
+    } else {
+      setGoBack(false);
+      return;
+    }
+  }, []);
 
   const loginWithProvider = () => {
     login();
   };
 
+  const handleGoBack = () => {
+    if (history.location.pathname !== '/') {
+      history.goBack();
+      setGoBack(true);
+    } else {
+      setGoBack(false);
+      return;
+    }
+  };
+
   const handleFileChange = async (e) => {
     const type = 'audio/mpeg';
-    const typeOfFile = e.target.files[0].type;
-    const file = e.target.files[0];
-    if (type === typeOfFile) {
-      // upload file mp3 lên firebase
-      const { uploadMusic, filePath } = setStorage();
-      // Kiểm tra người mới hay người cũ.
-      const res = await checkDocIfExist('playlists', user.uid);
-      console.log(res);
-      // lấy link nhạc từ firestore
-      const { url } = await uploadMusic(file);
-      // Check < 1 là người mới
-      if (res.length < 1) {
-        console.log('newbie');
-        // Chưa có playlist (người mới) thì tự tạo 1 cái.
-        if (url) {
-          const { addDoc } = setCollection('playlists');
-          const res = addDoc({
-            userId: user.uid,
-            userName: user.displayName,
-            playlists: {
-              free: [url],
-            },
-            createdAt: timestamp(),
-          });
-        }
-        // Có rồi thi update
-      } else {
-        // Copy ra địa chỉ mới
-        let dataArray = [...res];
-        // Get id của cái document
-        let id = dataArray[0].id;
-        // Thêm bài hát vào
-        dataArray[0].playlists.free.push(url);
-        let data = dataArray[0];
-        // Update lại
-        await updateDoc('playlists', id, data);
+    const files = e.target.files;
+    notify(`${files.length} file đang được tải lên!`);
+    for (let file of files) {
+      const typeOfFile = file.type;
+      if (type === typeOfFile) {
+        await uploadMusicPrivate(file, user.uid, user.displayName);
       }
     }
+    notify(`${files.length} file tải lên thành công!`);
   };
   // Dành cho user chưa login
   const handleUserNotLogged = () => {
@@ -96,20 +88,27 @@ const Header = ({ isScrollMoreThanZero }) => {
   const handleLoggedUser = () => {
     return (
       <div className={classes.right}>
-        <div className={classes.iconContainer}>
-          <SettingsIcon className={classes.icon} />
-        </div>
-        <label for="upload">
+        <label htmlFor="upload">
           <div className={classes.iconContainer}>
             <CloudUploadOutlinedIcon className={classes.icon} />
             <input
               type="file"
               style={{ display: 'none' }}
+              multiple="multiple"
               id="upload"
               onChange={handleFileChange}
             />
+            <div className={classes.popOver}>
+              <PopOver text="Tải lên" />
+            </div>
           </div>
         </label>
+        <div className={classes.iconContainer}>
+          <SettingsIcon className={classes.icon} />
+          <div className={classes.popOver}>
+            <PopOver text="Cài đặt" />
+          </div>
+        </div>
         <div className={classes.iconContainer}>
           <Link to="/mymusic">
             <img src={user.photoURL} alt="avatar" className={classes.avatar} />
@@ -127,8 +126,13 @@ const Header = ({ isScrollMoreThanZero }) => {
     >
       <div className={classes.left}>
         <div className={classes.direct}>
-          <ArrowBackIosIcon className={classes.directIcon} />
-          <ArrowForwardIosIcon className={classes.directIcon} />
+          <CallReceivedIcon
+            className={`${classes.directIcon} ${
+              goBack ? classes.directIconCan : ''
+            }`}
+            onClick={handleGoBack}
+          />
+          <CallMadeIcon className={classes.directIcon} />
         </div>
         <SearchBar />
       </div>

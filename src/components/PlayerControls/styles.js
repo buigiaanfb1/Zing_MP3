@@ -41,16 +41,12 @@ export const useStyles = makeStyles((theme) => ({
     // transform: 'translateX(20px)',
   },
 
-  containerAvatar: {},
   avatar: {
     width: '60px',
     height: '60px',
     borderRadius: '50%',
     border: '2px solid #fafafa',
   },
-  containerText: {},
-  tools: {},
-
   player: {
     width: '100%',
     display: 'flex',
@@ -58,9 +54,22 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
 
+  iconToolContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    width: '32px',
+    height: '32px',
+    borderRadius: '50%',
+    '&:hover': {
+      backgroundColor: 'hsla(0, 0%, 100%, .1)',
+    },
+  },
+
   iconTool: {
-    width: '30px',
-    height: '30px',
+    width: '28px',
+    height: '28px',
   },
   iconPlayContainer: {
     margin: '0 1.5rem',
@@ -71,6 +80,7 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    cursor: 'pointer',
   },
 
   iconPlay: {
@@ -143,7 +153,7 @@ export const useStyles = makeStyles((theme) => ({
     fontWeight: '500',
     fontSize: '12px',
     marginRight: '8px',
-    width: '27px',
+    width: '32px',
   },
 
   duration: {
@@ -152,7 +162,7 @@ export const useStyles = makeStyles((theme) => ({
     fontWeight: '500',
     fontSize: '12px',
     marginLeft: '8px',
-    width: '27px',
+    width: '35px',
   },
 
   right: {

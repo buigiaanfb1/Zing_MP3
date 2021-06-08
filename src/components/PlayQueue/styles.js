@@ -76,6 +76,10 @@ export const useStyles = makeStyles((theme) => ({
     // backgroundColor: 'var(--purple-primary)',
     borderRadius: '5px',
     alignItems: 'center',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'var(--alpha-bg)',
+    },
   },
 
   musicContainerSelected: {
@@ -84,6 +88,7 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: 'var(--purple-primary)',
     borderRadius: '5px',
     alignItems: 'center',
+    cursor: 'pointer',
   },
 
   containerTitleAuthor: {

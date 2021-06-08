@@ -36,8 +36,12 @@ export const useStyles = makeStyles((theme) => ({
 
   directIcon: {
     marginRight: '1rem',
+    transform: 'rotate(45deg)',
   },
 
+  directIconCan: {
+    color: 'var(--selected)',
+  },
   left: {
     display: 'flex',
     alignItems: 'center',
@@ -54,6 +58,7 @@ export const useStyles = makeStyles((theme) => ({
     height: '38px',
     width: '38px',
     borderRadius: '50%',
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -69,5 +74,13 @@ export const useStyles = makeStyles((theme) => ({
     height: '40px',
     width: '40px',
     borderRadius: '50%',
+  },
+
+  popOver: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-30%, -50%)',
+    zIndex: '10',
   },
 }));

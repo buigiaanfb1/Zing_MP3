@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="285px" height="240px" viewBox="0 0 285 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>4348FB66-6388-4EFA-B885-B58DBC5DCAB8</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="layout/queue/list-queue-empty" transform="translate(-20.000000, -70.000000)">
+            <g id="bg-empty" transform="translate(20.000000, 70.000000)">
+                <rect id="Rectangle" x="0" y="0" width="285" height="240"></rect>
+                <g id="default" fill="#FFFFFF" fill-opacity="0.1">
+                    <rect id="Rectangle-11-Copy" x="0" y="0" width="40" height="40" rx="2"></rect>
+                    <rect id="Rectangle" x="50" y="2" width="232" height="10" rx="5"></rect>
+                    <rect id="Rectangle-Copy" x="50" y="19" width="117" height="10" rx="5"></rect>
+                </g>
+                <g id="default-copy" transform="translate(0.000000, 50.000000)" fill="#FFFFFF" fill-opacity="0.1">
+                    <rect id="Rectangle-11-Copy" x="0" y="0" width="40" height="40" rx="2"></rect>
+                    <rect id="Rectangle" x="50" y="2" width="232" height="10" rx="5"></rect>
+                    <rect id="Rectangle-Copy" x="50" y="19" width="117" height="10" rx="5"></rect>
+                </g>
+                <g id="default-copy-2" transform="translate(0.000000, 100.000000)" fill="#FFFFFF" fill-opacity="0.1">
+                    <rect id="Rectangle-11-Copy-2" x="0" y="0" width="40" height="40" rx="2"></rect>
+                    <rect id="Rectangle" x="50" y="2" width="232" height="10" rx="5"></rect>
+                    <rect id="Rectangle-Copy" x="50" y="19" width="117" height="10" rx="5"></rect>
+                </g>
+                <g id="default-copy-3" transform="translate(0.000000, 150.000000)" fill="#FFFFFF" fill-opacity="0.1">
+                    <rect id="Rectangle-11-Copy-3" x="0" y="0" width="40" height="40" rx="2"></rect>
+                    <rect id="Rectangle" x="50" y="2" width="232" height="10" rx="5"></rect>
+                    <rect id="Rectangle-Copy" x="50" y="19" width="117" height="10" rx="5"></rect>
+                </g>
+                <g id="default-copy-4" transform="translate(0.000000, 200.000000)" fill="#FFFFFF" fill-opacity="0.1">
+                    <rect id="Rectangle-11-Copy-4" x="0" y="0" width="40" height="40" rx="2"></rect>
+                    <rect id="Rectangle" x="50" y="2" width="232" height="10" rx="5"></rect>
+                    <rect id="Rectangle-Copy" x="50" y="19" width="117" height="10" rx="5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

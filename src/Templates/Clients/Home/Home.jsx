@@ -6,12 +6,13 @@ import PlayerControls from '../../../components/PlayerControls';
 import PlayerQueue from '../../../components/PlayQueue';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import history from '../../../history';
-import { routesHome } from '../../../routes';
+import { routesHome, privateRoutes } from '../../../routes';
 import ClientTemplate from '../index';
 import { getCollection } from '../../../firebase/tools/getCollection';
 import { FETCH_ALBUMS } from './modules/constants';
+import PrivateRoutesIndex from '../../PrivateRoutesIndex';
 
 const Home = () => {
   // init
@@ -19,6 +20,9 @@ const Home = () => {
   const isLaptop = useMediaQuery({ query: '(max-width: 1636px)' });
   const openQueue = useSelector((state) => state.shareStore.openQueue);
   const dispatch = useDispatch();
+
+  // Redirect page not found
+  const NotFoundRedirect = () => <Redirect to="/" />;
 
   const fetchAlbums = async () => {
     const res = await getCollection('albums');
@@ -49,6 +53,22 @@ const Home = () => {
     }
   };
 
+  // private route
+  const showLayoutPrivateClient = () => {
+    if (privateRoutes && privateRoutes.length > 0) {
+      return privateRoutes.map((route, index) => {
+        return (
+          <PrivateRoutesIndex
+            exact
+            path={route.path}
+            component={route.component}
+            key={index}
+          />
+        );
+      });
+    }
+  };
+
   // return
   return (
     <div className={classes.bgColor}>
@@ -58,7 +78,11 @@ const Home = () => {
             <Navbar />
           </div>
           <div className={classes.main}>
-            <Switch>{showLayoutClient()}</Switch>
+            <Switch>
+              {showLayoutClient()}
+              {showLayoutPrivateClient()}
+              <Route component={NotFoundRedirect} />
+            </Switch>
           </div>
         </div>
         <div

@@ -28,6 +28,7 @@
   --border-primary: rgba(255, 255, 255, 0.1);
   --border-secondary: rgba(255, 255, 255, 0.05);
   --not-selected: rgba(255, 255, 255, 0.2);
+  --selected: rgba(255, 255, 255, 1);
   --icon-bg: rgba(255, 255, 255, 0.1);
   --blur-album: rgba(0, 0, 0, 0.4);
 }
@@ -66,6 +67,16 @@ body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.black-background {
+  background-color: #000;
+  padding: 0px 8px 8px 8px;
+}
+
+.grow-font-size {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
 }
 
 .slick-track {

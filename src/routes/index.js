@@ -7,16 +7,6 @@ import Test from '../Templates/Test';
 export const routesHome = [
   {
     exact: true,
-    path: '/',
-    component: Main,
-  },
-  {
-    exact: true,
-    path: '/mymusic',
-    component: MyMusic,
-  },
-  {
-    exact: true,
     path: '/admin',
     component: Home,
   },
@@ -29,5 +19,18 @@ export const routesHome = [
     exact: true,
     path: '/test',
     component: Test,
+  },
+  {
+    exact: false,
+    path: '/',
+    component: Main,
+  },
+];
+
+export const privateRoutes = [
+  {
+    exact: true,
+    path: '/mymusic',
+    component: MyMusic,
   },
 ];

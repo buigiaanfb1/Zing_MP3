@@ -7,11 +7,17 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import LoopOutlinedIcon from '@material-ui/icons/LoopOutlined';
+import ShuffleOutlinedIcon from '@material-ui/icons/ShuffleOutlined';
 import { useStyles } from './styles';
 import OpenQueue from '../OpenQueue';
 import { useMediaQuery } from 'react-responsive';
 import Volume from '../Volume';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  CHANGE_NEXT_SONG,
+  CHANGE_PREVIOUS_SONG,
+} from '../../Templates/Clients/Album/modules/constants';
 
 const PlayerControls = () => {
   const classes = useStyles();
@@ -24,10 +30,25 @@ const PlayerControls = () => {
   // responsive
   const isLaptop = useMediaQuery({ query: '(max-width: 1636px)' });
 
+  // init dispatch
+  const dispatch = useDispatch();
   // selector
   const song = useSelector((state) => state.shareStore.selectedSong);
   console.log('Player control render');
-  console.log(audioRef);
+
+  // dispatch bài hát tiếp theo qua icon next
+  const handleNextSong = () => {
+    dispatch({
+      type: CHANGE_NEXT_SONG,
+    });
+  };
+
+  // dispatch bài hát trước đó theo qua icon next
+  const handlePreviousSong = () => {
+    dispatch({
+      type: CHANGE_PREVIOUS_SONG,
+    });
+  };
 
   // play current song, stop current song
   const handlePlaySong = () => {
@@ -42,6 +63,7 @@ const PlayerControls = () => {
 
   const handlerAutoPlay = () => {
     audioRef.current.play();
+    setPlaying(true);
   };
 
   // Update current time của bài hát
@@ -95,7 +117,18 @@ const PlayerControls = () => {
               <Grid item xs={6}>
                 <div className={classes.center}>
                   <div className={classes.player}>
-                    <SkipPreviousIcon className={classes.iconTool} />
+                    {/* <div className={classes.iconToolContainer}>
+                      <ShuffleOutlinedIcon
+                        className={classes.iconTool}
+                        onClick={() => handlePreviousSong()}
+                      />
+                    </div> */}
+                    <div className={classes.iconToolContainer}>
+                      <SkipPreviousIcon
+                        className={classes.iconTool}
+                        onClick={() => handlePreviousSong()}
+                      />
+                    </div>
                     <div
                       className={classes.iconPlayContainer}
                       onClick={() => handlePlaySong()}
@@ -106,7 +139,18 @@ const PlayerControls = () => {
                         <PlayArrowIcon className={classes.iconPlay} />
                       )}
                     </div>
-                    <SkipNextIcon className={classes.iconTool} />
+                    <div className={classes.iconToolContainer}>
+                      <SkipNextIcon
+                        className={classes.iconTool}
+                        onClick={() => handleNextSong()}
+                      />
+                    </div>
+                    {/* <div className={classes.iconToolContainer}>
+                      <LoopOutlinedIcon
+                        className={classes.iconTool}
+                        onClick={() => handleNextSong()}
+                      />
+                    </div> */}
                   </div>
                   <div className={classes.rangeContainer}>
                     <div>
@@ -153,6 +197,7 @@ const PlayerControls = () => {
           ref={audioRef}
           onTimeUpdate={handleTime}
           onLoadedData={handlerAutoPlay}
+          onEnded={handleNextSong}
         />
       </div>
     );

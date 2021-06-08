@@ -7,10 +7,10 @@ export const getDocument = async (collection, id) => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        return doc.data();
+        return { ...doc.data(), id: doc.id };
       } else {
         // doc.data() will be undefined in this case
-        console.log('No such document!');
+        return null;
       }
     })
     .catch((error) => {

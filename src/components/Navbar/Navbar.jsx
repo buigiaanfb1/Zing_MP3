@@ -10,27 +10,66 @@ import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import OndemandVideoOutlinedIcon from '@material-ui/icons/OndemandVideoOutlined';
 import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-
+import { Link, NavLink } from 'react-router-dom';
+import { getUser } from '../../firebase/tools/getUser';
+import { login } from '../../firebase/tools/useLogin';
 const Navbar = () => {
   const classes = useStyles();
+  const { res } = getUser();
+
+  const loginWithProvider = () => {
+    login();
+  };
+
+  const handleUserLogin = () => {
+    if (!res) {
+      return (
+        <div className={classes.tool} onClick={() => loginWithProvider()}>
+          <MusicVideoIcon className={classes.toolIcon} />
+          <Typography className={classes.toolText}>Cá Nhân</Typography>
+        </div>
+      );
+    } else {
+      return (
+        <NavLink
+          to="/mymusic"
+          className={classes.tool}
+          activeClassName={classes.activeTool}
+        >
+          <MusicVideoIcon className={classes.toolIcon} />
+          <Typography className={classes.toolText}>Cá Nhân</Typography>
+        </NavLink>
+      );
+    }
+  };
+
   return (
     <div className={classes.bgColor}>
       <div className={classes.container}>
-        <div>
+        <div className={classes.containerLogo}>
           <Link to="/">
             <img src={LogoDark} className={classes.logo} />
           </Link>
         </div>
         <div className={classes.tools}>
-          <div className={classes.tool}>
+          {/* <NavLink
+            to="/mymusic"
+            className={classes.tool}
+            activeClassName={classes.activeTool}
+          >
             <MusicVideoIcon className={classes.toolIcon} />
             <Typography className={classes.toolText}>Cá Nhân</Typography>
-          </div>
-          <div className={classes.tool}>
+          </NavLink> */}
+          {handleUserLogin()}
+          <NavLink
+            to="/"
+            exact={true}
+            className={classes.tool}
+            activeClassName={classes.activeTool}
+          >
             <AdjustIcon className={classes.toolIcon} />
             <Typography className={classes.toolText}>Khám Phá</Typography>
-          </div>
+          </NavLink>
           <div className={classes.tool}>
             <AssessmentOutlinedIcon className={classes.toolIcon} />
             <Typography className={classes.toolText}>Zing Chart</Typography>

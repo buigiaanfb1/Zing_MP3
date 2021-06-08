@@ -63,9 +63,9 @@ const Album = ({ albums }) => {
 
   // render methods
   const handleRenderAlbum = () => {
-    return albums.map((album) => {
+    return albums.map((album, index) => {
       return (
-        <div className={classes.containerAlbum}>
+        <div className={classes.containerAlbum} key={index}>
           <div className={classes.containerImageAlbum}>
             <img src={album.cover} className={classes.imageAlbum} />
             <div className={classes.overlay}>

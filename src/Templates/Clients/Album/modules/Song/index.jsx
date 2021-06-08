@@ -6,7 +6,6 @@ import defaultCoverSong from './../../../../../assets/images/defaultCoverSong.pn
 import { useStyles } from './styles';
 
 const Song = ({ song }) => {
-  console.log('render Song ');
   const classes = useStyles();
 
   const formatTime = (duration) => {
@@ -18,7 +17,11 @@ const Song = ({ song }) => {
   };
 
   return (
-    <div className={classes.containerSongs}>
+    <div
+      className={`${classes.containerSongs} ${
+        song.isSelected ? classes.containerSongsIsSelected : ''
+      }`}
+    >
       <div className={classes.songs}>
         <div className={classes.songItem}>
           <Grid container spacing={0}>

@@ -1,33 +1,65 @@
 import React from 'react';
 import { useStyles } from './styles';
-import queue1 from '../../../assets/images/queue1.jpeg';
+import defaultCoverSong from '../../../assets/images/defaultCoverSong.png';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
-const Song = () => {
+const Song = ({ song }) => {
   const classes = useStyles();
+
+  const formatTime = (duration) => {
+    return (
+      ('0' + Math.floor(duration / 60)).slice(-2) +
+      ':' +
+      ('0' + Math.floor(duration % 60)).slice(-2)
+    );
+  };
+
   return (
     <div className={classes.songs}>
-      <div className={classes.songItem}>
-        <div className={classes.songNameImgAuthContainer}>
-          <img src={queue1} alt="song" />
-          <div className={classes.songNameImgAuth}>
-            <Typography className={classes.songTitle}>Faded</Typography>
-            <Typography className={classes.author}>Author</Typography>
-          </div>
-        </div>
-        <div className={classes.time}>
-          <Typography className={classes.timeText}>05:45</Typography>
-        </div>
-        <div className={classes.tools}>
-          <div className={classes.iconContainer}>
-            <FavoriteBorderOutlinedIcon className={classes.icon} />
-          </div>
-          <div className={classes.iconContainer}>
-            <MoreHorizOutlinedIcon className={classes.icon} />
-          </div>
-        </div>
+      <div
+        className={`${classes.songItem} ${
+          song.isSelected ? classes.songItemIsSelected : ''
+        }`}
+      >
+        <Grid container spacing={0}>
+          <Grid item xs={6}>
+            <div className={classes.songNameImgAuthContainer}>
+              <img
+                src={song.picture ? song.picture : defaultCoverSong}
+                alt="song"
+              />
+              <div className={classes.songNameImgAuth}>
+                <Typography className={classes.songTitle}>
+                  {song.title.length > 38
+                    ? song.title.substr(0, 38) + '...'
+                    : song.title}
+                </Typography>
+                <Typography className={classes.author}>
+                  {song.artist}
+                </Typography>
+              </div>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.time}>
+              <Typography className={classes.timeText}>
+                {formatTime(song.duration)}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={4}>
+            <div className={classes.tools}>
+              <div className={classes.iconContainer}>
+                <FavoriteBorderOutlinedIcon className={classes.icon} />
+              </div>
+              <div className={classes.iconContainer}>
+                <MoreHorizOutlinedIcon className={classes.icon} />
+              </div>
+            </div>
+          </Grid>
+        </Grid>
       </div>
     </div>
   );

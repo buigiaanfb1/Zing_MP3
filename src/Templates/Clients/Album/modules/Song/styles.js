@@ -2,13 +2,23 @@ import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
   containerSongs: {
-    padding: ' 0 2.5rem',
+    margin: '0 2.5rem',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'var(--alpha-bg)',
+    },
+  },
+  containerSongsIsSelected: {
+    margin: '0 2.5rem',
+    backgroundColor: 'var(--alpha-bg)',
+    cursor: 'pointer',
   },
   songItem: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '10px',
+    padding: '10px 15px',
     fontFamily: "'Inter', sans-serif",
     borderRadius: '5px',
     borderBottom: '1px solid var(--border-secondary)',

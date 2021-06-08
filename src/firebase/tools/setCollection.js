@@ -10,5 +10,17 @@ export const setCollection = (document) => {
     }
   };
 
-  return { addDoc };
+  const addDocForPrivate = async (doc, userId) => {
+    try {
+      const res = await projectFirestore
+        .collection(document)
+        .doc(userId)
+        .set(doc);
+      return res;
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  return { addDoc, addDocForPrivate };
 };

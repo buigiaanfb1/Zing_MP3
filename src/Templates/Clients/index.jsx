@@ -1,6 +1,5 @@
 import { Route } from 'react-router-dom';
 import Header from '../../components/Header';
-import PlayerControls from '../../components/PlayerControls';
 
 const LayoutClient = (props) => {
   return (

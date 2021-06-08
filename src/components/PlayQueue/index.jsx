@@ -3,6 +3,7 @@ import React from 'react';
 import AccessAlarmsOutlinedIcon from '@material-ui/icons/AccessAlarmsOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import defaultCoverSong from '../../assets/images/defaultCoverSong.png';
+import imageQueueLoader from '../../assets/images/image-queue-loader.svg';
 import { useStyles } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { SELECTED_SONG } from '../../Templates/Clients/Album/modules/constants';
@@ -48,6 +49,8 @@ const PlayerQueue = () => {
           </div>
         );
       });
+    } else {
+      return <img src={imageQueueLoader} />;
     }
   };
 

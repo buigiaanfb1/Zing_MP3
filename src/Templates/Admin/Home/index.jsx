@@ -4,6 +4,7 @@ import { setStorage } from '../../../firebase/tools/setStorage';
 import { setCollection } from '../../../firebase/tools/setCollection';
 import { parseSongMp3 } from '../../../common/handleParseFile';
 import { useStyles } from './styles';
+import notify from '../../../common/toastify';
 
 const Home = () => {
   const classes = useStyles();
@@ -51,7 +52,7 @@ const Home = () => {
 
   const handleSubmit = async () => {
     if (content.albumTitle && content.cover && content.songs) {
-      console.log('Starting');
+      notify(`Đang upload lên Firebase!`);
       const arrSongs = [];
       let titlePath = content.albumTitle
         .slice(0)
@@ -85,7 +86,7 @@ const Home = () => {
         cover: coverUrl,
         songs: arrSongs,
       });
-      console.log('Success');
+      notify(`Bravoooo! Đã tải lên!`);
     } else {
       return;
     }

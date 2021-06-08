@@ -9,7 +9,16 @@ export const useStyles = makeStyles((theme) => ({
     fontFamily: "'Inter', sans-serif",
     borderRadius: '5px',
     borderBottom: '1px solid var(--border-secondary)',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'var(--alpha-bg)',
+    },
   },
+
+  songItemIsSelected: {
+    backgroundColor: 'var(--alpha-bg)',
+  },
+
   songNameImgAuthContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -33,6 +42,11 @@ export const useStyles = makeStyles((theme) => ({
     color: 'var(--text-secondary)',
     fontWeight: '500',
   },
+  time: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
+  },
   timeText: {
     fontFamily: 'inherit',
     fontSize: '12px',
@@ -42,6 +56,8 @@ export const useStyles = makeStyles((theme) => ({
   tools: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'flex-end',
+    height: '100%',
   },
   icon: {
     width: '18px',
