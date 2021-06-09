@@ -97,7 +97,7 @@ const Songs = () => {
     }
     // chạy những lần còn lại @@
     else {
-      if (album) {
+      if (album && render != 1) {
         console.log(album);
         return album.songs.map((song, index) => {
           return (
