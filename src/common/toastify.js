@@ -4,7 +4,7 @@ const notify = (text) =>
   toast(text, {
     className: 'black-background',
     bodyClassName: 'grow-font-size',
-    position: 'bottom-left',
+    position: 'top-left',
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
