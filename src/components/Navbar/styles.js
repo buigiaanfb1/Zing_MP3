@@ -78,8 +78,38 @@ export const useStyles = makeStyles((theme) => ({
 
   toolText: {
     fontSize: '14px',
-    fontFamily: 'inherit',
+    fontFamily: "'Inter', sans-serif",
     fontWeight: '500',
     color: 'inherit',
+  },
+
+  signInContainer: {
+    margin: '15px',
+    padding: '20px',
+    borderRadius: '16px',
+    textAlign: 'center',
+    color: 'var(--text-primary)',
+    backgroundColor: 'var(--purple-primary)',
+  },
+  textSignIn: {
+    fontFamily: 'inherit',
+    fontWeight: '400',
+    fontSize: '15px',
+    lineHeight: '150%',
+    wordSpacing: '-0.5px',
+    letterSpacing: '-0.5px',
+  },
+  signInButton: {
+    marginTop: '15px',
+    borderRadius: '999px',
+    padding: '9px 40px',
+    color: 'inherit',
+    cursor: 'pointer',
+    backgroundColor: 'transparent',
+    border: '1px solid var(--white)',
+    fontSize: '14px',
+    '&:hover': {
+      opacity: '0.8',
+    },
   },
 }));

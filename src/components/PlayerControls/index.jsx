@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@material-ui/core';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import defaultCoverSong from '../../assets/images/defaultCoverSong.png';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
@@ -7,8 +7,6 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-import LoopOutlinedIcon from '@material-ui/icons/LoopOutlined';
-import ShuffleOutlinedIcon from '@material-ui/icons/ShuffleOutlined';
 import { useStyles } from './styles';
 import OpenQueue from '../OpenQueue';
 import { useMediaQuery } from 'react-responsive';
@@ -17,24 +15,42 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   CHANGE_NEXT_SONG,
   CHANGE_PREVIOUS_SONG,
+  IS_PLAYING,
 } from '../../Templates/Clients/Album/modules/constants';
 
 const PlayerControls = () => {
   const classes = useStyles();
   const audioRef = useRef(null);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState({
     current: 0,
     duration: 0,
   });
   // responsive
   const isLaptop = useMediaQuery({ query: '(max-width: 1636px)' });
-
   // init dispatch
   const dispatch = useDispatch();
   // selector
-  const song = useSelector((state) => state.shareStore.selectedSong);
+  let song = useSelector((state) => state.shareStore.selectedSong);
   console.log('Player control render');
+
+  useEffect(() => {
+    if (song) {
+      handlerAutoPlay();
+    }
+  }, [song]);
+
+  useEffect(() => {
+    handleSaveLocalStorageCurrentSong();
+  }, [song]);
+
+  // lưu bài hát đang hát xuống localStorage
+  // để lần sau vào lại web vẫn còn bài đó
+  const handleSaveLocalStorageCurrentSong = () => {
+    if (song) {
+      localStorage.setItem('zmp3_current_player', JSON.stringify(song));
+    }
+  };
 
   // dispatch bài hát tiếp theo qua icon next
   const handleNextSong = () => {
@@ -55,15 +71,34 @@ const PlayerControls = () => {
     if (playing) {
       setPlaying(false);
       audioRef.current.pause();
+      dispatch({
+        type: IS_PLAYING,
+      });
     } else {
       setPlaying(true);
       audioRef.current.play();
+      dispatch({
+        type: IS_PLAYING,
+      });
     }
   };
 
   const handlerAutoPlay = () => {
-    audioRef.current.play();
-    setPlaying(true);
+    let audio = document.querySelector('audio').play();
+    // audioRef.current.play();
+    // setPlaying(true);
+    if (audio !== undefined) {
+      audio
+        .then((_) => {
+          // Autoplay started!
+          audioRef.current.play();
+          setPlaying(true);
+        })
+        .catch((error) => {
+          // Autoplay was prevented.
+          // Show a "Play" button so that user can start playback.
+        });
+    }
   };
 
   // Update current time của bài hát

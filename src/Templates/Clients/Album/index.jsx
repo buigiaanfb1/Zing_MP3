@@ -24,6 +24,16 @@ const Album = (props) => {
     handleGetAlbum();
   }, []);
 
+  useEffect(() => {
+    handleSaveAlbumLocalStorage();
+  }, [album]);
+
+  const handleSaveAlbumLocalStorage = () => {
+    if (album) {
+      localStorage.setItem('zmp3_queue', JSON.stringify(album));
+    }
+  };
+
   const handleTwoDispatch = (song, title) => {
     // Dispatch 2 cái khi click mới làm ( để tránh khi người dùng )
     // vừa vào nó load lại mất playlist @@

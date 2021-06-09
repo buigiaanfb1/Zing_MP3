@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
   container: {
-    height: 'calc(100vh - 90px)',
-    maxHeight: 'calc(100vh - 90px)',
+    height: 'calc(100vh)',
+    maxHeight: 'calc(100vh)',
     bottom: '0',
     right: '0',
     position: 'relative',
@@ -82,6 +82,19 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
 
+  containerImg: {
+    position: 'relative',
+  },
+
+  gifContainer: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    // width: '20px',
+    // height: '20px',
+    transform: 'translate(-50%, -50%) scale(0.5)',
+  },
+
   musicContainerSelected: {
     display: 'flex',
     padding: '8px',
@@ -92,6 +105,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   containerTitleAuthor: {
+    marginLeft: '10px',
     // display: 'flex',
     // alignItems: 'flex-start',
     // flexDirection: 'column',
@@ -114,7 +128,6 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: '40px',
     maxHeight: '40px',
     borderRadius: '4px',
-    marginRight: '10px',
     width: '100%',
   },
 
@@ -124,5 +137,6 @@ export const useStyles = makeStyles((theme) => ({
     overflow: 'hidden auto',
     marginRight: '-0px',
     marginBottom: '0px',
+    paddingBottom: '90px',
   },
 }));

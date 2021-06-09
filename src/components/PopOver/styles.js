@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(0),
-    backgroundColor: 'var(--pop-over-bg)',
+    backgroundColor: 'rgb(49, 49, 49)',
   },
   text: {
     color: 'var(--text-primary)',

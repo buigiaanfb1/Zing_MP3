@@ -19,6 +19,7 @@ export const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     bottom: '0',
+    zIndex: '99999',
     width: '100%',
   },
   container: {

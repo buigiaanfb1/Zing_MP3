@@ -4,6 +4,7 @@ import AccessAlarmsOutlinedIcon from '@material-ui/icons/AccessAlarmsOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import defaultCoverSong from '../../assets/images/defaultCoverSong.png';
 import imageQueueLoader from '../../assets/images/image-queue-loader.svg';
+import iconPlayingPurple from '../../assets/images/icon-playing-purple.gif';
 import { useStyles } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { SELECTED_SONG } from '../../Templates/Clients/Album/modules/constants';
@@ -12,13 +13,17 @@ const PlayerQueue = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const album = useSelector((state) => state.shareStore.selectedAlbum);
+  const isPlaying = useSelector((state) => state.shareStore.isPlaying);
 
   const handleDispatchSong = (song) => {
     console.log(song);
-    dispatch({
-      type: SELECTED_SONG,
-      payload: song,
-    });
+    if (!song.isSelected) {
+      dispatch({
+        type: SELECTED_SONG,
+        payload: song,
+      });
+    }
+    return;
   };
 
   const handleRenderPlayerQueue = () => {
@@ -34,10 +39,23 @@ const PlayerQueue = () => {
             key={index}
             onClick={() => handleDispatchSong(song)}
           >
-            <img
-              src={song.picture ? song.picture : defaultCoverSong}
-              className={classes.img}
-            />
+            <div className={classes.containerImg}>
+              <img
+                src={song.picture ? song.picture : defaultCoverSong}
+                className={classes.img}
+              />
+              {song?.isSelected ? (
+                isPlaying ? (
+                  <div className={classes.gifContainer}>
+                    <img src={iconPlayingPurple} />
+                  </div>
+                ) : (
+                  ''
+                )
+              ) : (
+                ''
+              )}
+            </div>
             <div className={classes.containerTitleAuthor}>
               <Typography className={classes.title}>
                 {song.title.length > 30

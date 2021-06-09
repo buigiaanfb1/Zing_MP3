@@ -7,6 +7,7 @@ import {
   SELECTED_ALBUM,
   CHANGE_NEXT_SONG,
   CHANGE_PREVIOUS_SONG,
+  IS_PLAYING,
 } from '../../Templates/Clients/Album/modules/constants';
 import { CLOSE_QUEUE, OPEN_QUEUE } from '../action/action';
 import { CLEAR_ALBUM_SIGN_OUT } from '../../Templates/Clients/MyMusic/modules/constants';
@@ -16,6 +17,7 @@ const initialState = {
   albums: null,
   selectedSong: null,
   selectedAlbum: null,
+  isPlaying: false,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -26,6 +28,10 @@ export default (state = initialState, { type, payload }) => {
 
     case CLOSE_QUEUE:
       state.openQueue = false;
+      return { ...state };
+
+    case IS_PLAYING:
+      state.isPlaying = !state.isPlaying;
       return { ...state };
 
     case FETCH_ALBUMS:

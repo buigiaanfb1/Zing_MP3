@@ -1,14 +1,11 @@
 import React from 'react';
 import { useStyles } from './styles';
 import LogoDark from '../../assets/images/logo-dark.svg';
+import Logo from '../../assets/images/logo-dark.png';
 import MusicVideoIcon from '@material-ui/icons/MusicVideo';
 import AdjustIcon from '@material-ui/icons/Adjust';
 import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
 import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
-import MusicNoteOutlinedIcon from '@material-ui/icons/MusicNoteOutlined';
-import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
-import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
-import OndemandVideoOutlinedIcon from '@material-ui/icons/OndemandVideoOutlined';
 import { Typography } from '@material-ui/core';
 import { Link, NavLink } from 'react-router-dom';
 import { getUser } from '../../firebase/tools/getUser';
@@ -39,6 +36,22 @@ const Navbar = () => {
           <MusicVideoIcon className={classes.toolIcon} />
           <Typography className={classes.toolText}>Cá Nhân</Typography>
         </NavLink>
+      );
+    }
+  };
+
+  const handleSignInPopUp = () => {
+    if (!res) {
+      return (
+        <div
+          className={classes.signInContainer}
+          onClick={() => loginWithProvider()}
+        >
+          <Typography className={classes.textSignIn}>
+            Đăng nhập để khám phá những playlist dành riêng cho chính bạn.
+          </Typography>
+          <button className={classes.signInButton}>ĐĂNG NHẬP</button>
+        </div>
       );
     }
   };
@@ -79,24 +92,7 @@ const Navbar = () => {
             <Typography className={classes.toolText}>Theo Dõi</Typography>
           </div>
         </div>
-        <div className={classes.tools}>
-          <div className={classes.tool}>
-            <MusicNoteOutlinedIcon className={classes.toolIcon} />
-            <Typography className={classes.toolText}>Nhạc Mới</Typography>
-          </div>
-          <div className={classes.tool}>
-            <CategoryOutlinedIcon className={classes.toolIcon} />
-            <Typography className={classes.toolText}>Thể Loại</Typography>
-          </div>
-          <div className={classes.tool}>
-            <GradeOutlinedIcon className={classes.toolIcon} />
-            <Typography className={classes.toolText}>Top 100</Typography>
-          </div>
-          <div className={classes.tool}>
-            <OndemandVideoOutlinedIcon className={classes.toolIcon} />
-            <Typography className={classes.toolText}>MV</Typography>
-          </div>
-        </div>
+        {handleSignInPopUp()}
       </div>
     </div>
   );

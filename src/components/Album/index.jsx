@@ -14,10 +14,10 @@ import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { Link } from 'react-router-dom';
 
-const Album = ({ albums }) => {
+const Album = ({ albums, title }) => {
   const classes = useStyles();
   const ref = useRef({});
-
+  console.log(albums);
   // next, previous button initial for slick-slider
   const next = () => {
     ref.current.slickNext();
@@ -90,66 +90,9 @@ const Album = ({ albums }) => {
 
   return (
     <div className={classes.container}>
-      <Typography className={classes.titleAll}>Gợi Ý Cho Hôm Nay</Typography>
+      <Typography className={classes.titleAll}>{title}</Typography>
       <Slider {...settings} ref={ref} className={classes.initialSlick}>
         {handleRenderAlbum()}
-        <div className={classes.containerAlbum}>
-          <div className={classes.containerImageAlbum}>
-            <img src={album1} className={classes.imageAlbum} />
-            <div className={classes.overlay}>
-              <div className={classes.tools}>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
-                <div className={classes.iconPlayContainer}>
-                  <PlayArrowIcon className={classes.iconPlay} />
-                </div>
-                <MoreHorizOutlinedIcon className={classes.icon} />
-              </div>
-            </div>
-          </div>
-          <div className={classes.containerTitle}>
-            <Typography className={classes.title}>
-              V-Pop Nhạc Mới Nổi Bật
-            </Typography>
-          </div>
-        </div>
-        <div className={classes.containerAlbum}>
-          <div className={classes.containerImageAlbum}>
-            <img src={album2} className={classes.imageAlbum} />
-            <div className={classes.overlay}>
-              <div className={classes.tools}>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
-                <div className={classes.iconPlayContainer}>
-                  <PlayArrowIcon className={classes.iconPlay} />
-                </div>
-                <MoreHorizOutlinedIcon className={classes.icon} />
-              </div>
-            </div>
-          </div>
-          <div className={classes.containerTitle}>
-            <Typography className={classes.title}>
-              V-Pop Nhạc Mới Nổi Bật
-            </Typography>
-          </div>
-        </div>
-        <div className={classes.containerAlbum}>
-          <div className={classes.containerImageAlbum}>
-            <img src={album2} className={classes.imageAlbum} />
-            <div className={classes.overlay}>
-              <div className={classes.tools}>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
-                <div className={classes.iconPlayContainer}>
-                  <PlayArrowIcon className={classes.iconPlay} />
-                </div>
-                <MoreHorizOutlinedIcon className={classes.icon} />
-              </div>
-            </div>
-          </div>
-          <div className={classes.containerTitle}>
-            <Typography className={classes.title}>
-              V-Pop Nhạc Mới Nổi Bật
-            </Typography>
-          </div>
-        </div>
       </Slider>
     </div>
   );

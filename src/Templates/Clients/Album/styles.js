@@ -34,6 +34,6 @@ export const useStyles = makeStyles((theme) => ({
     inset: '0',
     overflow: 'hidden auto',
     marginRight: '-0px',
-    marginBottom: '90px',
+    marginBottom: '00px',
   },
 }));
