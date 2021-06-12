@@ -3,7 +3,7 @@ import { projectFirestore } from '../config';
 export const getDocument = async (collection, id) => {
   console.log(collection, id);
   let documentRef = await projectFirestore.collection(collection).doc(id);
-  const res = await documentRef
+  return await documentRef
     .get()
     .then((doc) => {
       if (doc.exists) {
@@ -16,5 +16,4 @@ export const getDocument = async (collection, id) => {
     .catch((error) => {
       console.log('Error getting document:', error);
     });
-  return res;
 };

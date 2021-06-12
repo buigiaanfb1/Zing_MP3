@@ -46,14 +46,26 @@ const Main = () => {
           albumItem = [];
           titleIndex++;
           //
-          return <Album albums={copyAlbumItem} title={title[titleIndex]} />;
+          return (
+            <Album
+              albums={copyAlbumItem}
+              title={title[titleIndex]}
+              key={index}
+            />
+          );
         } else if (index === length - 1) {
           titleIndex++;
           // nếu k chia hết cho 8 thì gom lại
           // rồi return từ 8 cho đến số lẻ
           let copyAlbumItem = [...albumItem];
           //
-          return <Album albums={copyAlbumItem} title={title[titleIndex++]} />;
+          return (
+            <Album
+              albums={copyAlbumItem}
+              title={title[titleIndex++]}
+              key={index}
+            />
+          );
         }
       });
     }

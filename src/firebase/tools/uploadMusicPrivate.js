@@ -9,7 +9,7 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
   //   upload file mp3 lên firebase
   const { uploadMusic, uploadImageSong } = setStorage();
   // Kiểm tra người mới hay người cũ.
-  const res = await checkDocIfExist('playlists', userId);
+  const res = await checkDocIfExist('users', userId);
   // lấy link nhạc từ firestore
   const { url: songUrl } = await uploadMusic(file);
   //   parse ra để lấy hình ảnh, tên artist,....
@@ -29,7 +29,7 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
       arrSongs.push({ ...info, song: songUrl, picture: '' });
     }
     // Chưa có playlist (người mới) thì tự tạo 1 cái.
-    const { addDocForPrivate } = setCollection('playlists');
+    const { addDocForPrivate } = setCollection('users');
     await addDocForPrivate(
       {
         userId: userId,
@@ -46,21 +46,40 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
     console.log('old account');
     // Copy ra địa chỉ mới
     let dataArray = { ...res };
-    // Get id của cái document
-    let id = dataArray.id;
-    if (info?.picture) {
-      const { url: imgSongUrl } = await uploadImageSong(
-        info.picture,
-        displayName
-      );
-      arrSongs.push({ ...info, song: songUrl, picture: imgSongUrl });
+    if (dataArray.songs) {
+      // Get id của cái document
+      let id = dataArray.id;
+      if (info?.picture) {
+        const { url: imgSongUrl } = await uploadImageSong(
+          info.picture,
+          displayName
+        );
+        arrSongs.push({ ...info, song: songUrl, picture: imgSongUrl });
+      } else {
+        arrSongs.push({ ...info, song: songUrl, picture: '' });
+      }
+      // Thêm bài hát vào
+      dataArray.songs = [...dataArray.songs, ...arrSongs];
+      let data = dataArray;
+      // Update lại
+      await updateDoc('users', id, data);
     } else {
-      arrSongs.push({ ...info, song: songUrl, picture: '' });
+      // Get id của cái document
+      let id = dataArray.id;
+      if (info?.picture) {
+        const { url: imgSongUrl } = await uploadImageSong(
+          info.picture,
+          displayName
+        );
+        arrSongs.push({ ...info, song: songUrl, picture: imgSongUrl });
+      } else {
+        arrSongs.push({ ...info, song: songUrl, picture: '' });
+      }
+      // Thêm bài hát vào
+      dataArray = { ...dataArray, songs: arrSongs };
+      let data = dataArray;
+      // Update lại
+      await updateDoc('users', id, data);
     }
-    // Thêm bài hát vào
-    dataArray.songs = [...dataArray.songs, ...arrSongs];
-    let data = dataArray;
-    // Update lại
-    await updateDoc('playlists', id, data);
   }
 };

@@ -10,6 +10,7 @@ import { Typography } from '@material-ui/core';
 import { Link, NavLink } from 'react-router-dom';
 import { getUser } from '../../firebase/tools/getUser';
 import { login } from '../../firebase/tools/useLogin';
+import CreatePlaylistModal from '../CreatePlaylistModal';
 const Navbar = () => {
   const classes = useStyles();
   const { res } = getUser();
@@ -53,6 +54,8 @@ const Navbar = () => {
           <button className={classes.signInButton}>ĐĂNG NHẬP</button>
         </div>
       );
+    } else {
+      return <CreatePlaylistModal />;
     }
   };
 

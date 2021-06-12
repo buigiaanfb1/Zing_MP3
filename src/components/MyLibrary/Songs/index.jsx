@@ -45,7 +45,7 @@ const Songs = () => {
   const handleGetAlbum = async () => {
     // nếu mà khác id thì dispatch không thì thui giữ nguyên
     // if (!album) {
-    const res = await getDocument('playlists', user.uid);
+    const res = await getDocument('users', user.uid);
     // dữ liệu xài riêng cho component
     setAlbumFirst(res);
     // setRender(render + 1);
@@ -86,8 +86,8 @@ const Songs = () => {
 
   const handleRenderSongs = () => {
     // chạy khi mới load component lần đầu
-    if (albumFirst && render <= 1) {
-      return albumFirst.songs.map((song, index) => {
+    if (albumFirst && albumFirst.songs && render <= 1) {
+      return albumFirst?.songs.map((song, index) => {
         return (
           <div key={index} onClick={() => handleTwoDispatch(song, song.title)}>
             <Song song={song} />
@@ -99,10 +99,13 @@ const Songs = () => {
     else {
       if (album && render != 1) {
         console.log(album);
-        return album.songs.map((song, index) => {
+        return album?.songs.map((song, index) => {
           return (
-            <div onClick={() => handleDispatchSong(song, song.title)}>
-              <Song song={song} key={index} />
+            <div
+              onClick={() => handleDispatchSong(song, song.title)}
+              key={index}
+            >
+              <Song song={song} />
             </div>
           );
         });

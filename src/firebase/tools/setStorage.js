@@ -7,7 +7,7 @@ export const setStorage = () => {
   const { res: user } = getUser();
 
   const uploadMusic = async (file) => {
-    filePath = `playlists/${user.uid}/${file.name}`;
+    filePath = `users/${user.uid}/${file.name}`;
     const storageRef = projectStorage.ref(filePath);
 
     try {

@@ -1,11 +1,6 @@
 import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import { useStyles } from './styles';
-import album1 from '../../assets/images/album1.jpeg';
-import album2 from '../../assets/images/album2.jpeg';
-import album3 from '../../assets/images/album3.jpeg';
-import album4 from '../../assets/images/album4.jpeg';
-import album5 from '../../assets/images/album5.jpeg';
 import { Typography } from '@material-ui/core';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import ArrowForwardIosOutlinedIcon from '@material-ui/icons/ArrowForwardIosOutlined';

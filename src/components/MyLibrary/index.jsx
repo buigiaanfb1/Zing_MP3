@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import Songs from './Songs';
 import { getUser } from '../../firebase/tools/getUser';
 import { useStyles } from './styles';
+import MyPlaylists from '../MyPlaylists';
 
 const MyLibrary = () => {
   const classes = useStyles();
@@ -17,6 +18,7 @@ const MyLibrary = () => {
         </div>
       </div>
       <Songs />
+      <MyPlaylists />
     </div>
   );
 };

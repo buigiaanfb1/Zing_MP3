@@ -11,15 +11,21 @@ import { projectAuth } from './firebase/config';
 import { Provider } from 'react-redux';
 import store from './redux/reducers/config';
 
+// Material UI
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme } from './common/theme/theme';
+
 let app;
 
 projectAuth.onAuthStateChanged((_user) => {
   if (!app) {
     app = ReactDOM.render(
       <React.StrictMode>
-        <Provider store={store}>
-          <App />
-        </Provider>
+        <ThemeProvider theme={theme}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </ThemeProvider>
       </React.StrictMode>,
       document.getElementById('root')
     );

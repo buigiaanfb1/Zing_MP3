@@ -17,6 +17,7 @@
   --queue-player-popup-bg: #5d218c;
 
   --layout-bg: #37075d;
+  --primary-bg: #6a39af;
 
   --purple-primary: #ed2b91;
 
@@ -62,6 +63,24 @@
 *::-webkit-scrollbar-thumb:hover {
   opacity: 1;
   background: #8c00ff;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--text-primary);
+  opacity: 0.65; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--text-primary);
+  opacity: 0.65;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--text-primary);
+  opacity: 0.65;
 }
 
 body {
