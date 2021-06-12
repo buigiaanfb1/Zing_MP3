@@ -35,6 +35,7 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
         userId: userId,
         userName: displayName,
         songs: [...arrSongs],
+        playlists: [],
         createdAt: timestamp(),
       },
       userId

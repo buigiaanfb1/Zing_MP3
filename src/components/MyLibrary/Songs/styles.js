@@ -58,4 +58,19 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     marginLeft: 'auto',
   },
+  containerNothing: {
+    width: '100%',
+    padding: '30px 0',
+    minHeight: '220px',
+    backgroundColor: 'var(--alpha-bg)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    fontSize: '80px',
+    marginBottom: '20px',
+  },
+  text: {},
 }));

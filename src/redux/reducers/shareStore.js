@@ -1,6 +1,6 @@
 import {
   FETCH_ALBUMS,
-  IS_USER_LOGIN,
+  FETCH_USER_INFO,
 } from '../../Templates/Clients/Home/modules/constants';
 import {
   SELECTED_SONG,
@@ -15,6 +15,7 @@ import { CLEAR_ALBUM_SIGN_OUT } from '../../Templates/Clients/MyMusic/modules/co
 const initialState = {
   openQueue: false,
   albums: null,
+  userInfo: null,
   selectedSong: null,
   selectedAlbum: null,
   isPlaying: false,
@@ -36,6 +37,10 @@ export default (state = initialState, { type, payload }) => {
 
     case FETCH_ALBUMS:
       state.albums = payload;
+      return { ...state };
+
+    case FETCH_USER_INFO:
+      state.userInfo = payload;
       return { ...state };
 
     case SELECTED_ALBUM:

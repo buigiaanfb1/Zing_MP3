@@ -2,8 +2,9 @@ import { Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
 import CloudUploadOutlinedIcon from '@material-ui/icons/CloudUploadOutlined';
+import MusicNoteOutlinedIcon from '@material-ui/icons/MusicNoteOutlined';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import Song from '../Song';
+import Song from '../../Song';
 import { uploadMusicPrivate } from '../../../firebase/tools/uploadMusicPrivate';
 import { getUser } from '../../../firebase/tools/getUser.js';
 import { getDocument } from '../../../firebase/tools/getDocument.js';
@@ -66,7 +67,7 @@ const Songs = () => {
       payload: albumFirst,
     });
     // tăng lên 2 để tạo điều kiện dòng 64
-    setRender(render + 1);
+    // setRender(render + 1);
   };
 
   // Khi onClick 1 bài hát thì sẽ dispatch lên cho mấy
@@ -113,6 +114,19 @@ const Songs = () => {
     }
   };
 
+  const handleIfNothing = () => {
+    // if (render > 1) {
+    return (
+      <div className={classes.containerNothing}>
+        <MusicNoteOutlinedIcon className={classes.icon} />
+        <span className={classes.text}>
+          Không có Bài hát trong thư viện nhạc cá nhân
+        </span>
+      </div>
+    );
+    // }
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.title}>
@@ -137,7 +151,7 @@ const Songs = () => {
           </div>
         </div>
       </div>
-      {handleRenderSongs()}
+      {albumFirst || album ? handleRenderSongs() : handleIfNothing()}
     </div>
   );
 };

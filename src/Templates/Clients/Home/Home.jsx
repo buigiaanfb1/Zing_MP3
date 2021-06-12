@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useStyles } from './styles';
 import Navbar from '../../../components/Navbar/Navbar';
-import Main from '../../../components/Main';
 import PlayerControls from '../../../components/PlayerControls';
 import PlayerQueue from '../../../components/PlayQueue';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +10,9 @@ import history from '../../../history';
 import { routesHome, privateRoutes } from '../../../routes';
 import ClientTemplate from '../index';
 import { getCollection } from '../../../firebase/tools/getCollection';
-import { FETCH_ALBUMS } from './modules/constants';
+import { getDocument } from '../../../firebase/tools/getDocument';
+import { getUser } from '../../../firebase/tools/getUser';
+import { FETCH_ALBUMS, FETCH_USER_INFO } from './modules/constants';
 import PrivateRoutesIndex from '../../PrivateRoutesIndex';
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
   const isLaptop = useMediaQuery({ query: '(max-width: 1636px)' });
   const openQueue = useSelector((state) => state.shareStore.openQueue);
   const dispatch = useDispatch();
+  const { res: user } = getUser();
 
   // Redirect page not found
   const NotFoundRedirect = () => <Redirect to="/" />;
@@ -32,9 +34,20 @@ const Home = () => {
     });
   };
 
+  // fetch tất cả thông tin user ( 1 user) album, playlist;
+  const fetchUserInfo = async () => {
+    const res = await getDocument('users', user.uid);
+    if (res) {
+      dispatch({
+        type: FETCH_USER_INFO,
+        payload: res,
+      });
+    }
+  };
   //
   useEffect(() => {
     fetchAlbums();
+    fetchUserInfo();
   });
 
   // render Route

@@ -124,4 +124,24 @@ export const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: 'var(--text-primary)',
   },
+
+  emptyPlaylist: {
+    width: '100%',
+    height: '100%',
+    minHeight: '206px',
+    padding: '0 15px',
+    display: 'flex !important',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#fff',
+    cursor: 'pointer',
+    background: 'linear-gradient(33deg, #5a1eae -7%, #ce267a 117%)',
+    borderRadius: '4px',
+  },
+  addPlaylistIcon: {
+    fontSize: '60px',
+    marginBottom: '10px',
+  },
+  text: {},
 }));

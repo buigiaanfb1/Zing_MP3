@@ -1,9 +1,10 @@
 import React from 'react';
 import { useStyles } from './styles';
-import defaultCoverSong from '../../../assets/images/defaultCoverSong.png';
+import defaultCoverSong from '../../assets/images/defaultCoverSong.png';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import { Grid, Typography } from '@material-ui/core';
+import BaCham from '../BaCham';
 
 const Song = ({ song }) => {
   const classes = useStyles();
@@ -55,7 +56,8 @@ const Song = ({ song }) => {
                 <FavoriteBorderOutlinedIcon className={classes.icon} />
               </div>
               <div className={classes.iconContainer}>
-                <MoreHorizOutlinedIcon className={classes.icon} />
+                {/* <MoreHorizOutlinedIcon className={classes.icon} /> */}
+                <BaCham />
               </div>
             </div>
           </Grid>

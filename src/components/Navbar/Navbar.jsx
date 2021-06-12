@@ -68,14 +68,6 @@ const Navbar = () => {
           </Link>
         </div>
         <div className={classes.tools}>
-          {/* <NavLink
-            to="/mymusic"
-            className={classes.tool}
-            activeClassName={classes.activeTool}
-          >
-            <MusicVideoIcon className={classes.toolIcon} />
-            <Typography className={classes.toolText}>Cá Nhân</Typography>
-          </NavLink> */}
           {handleUserLogin()}
           <NavLink
             to="/"
@@ -86,14 +78,6 @@ const Navbar = () => {
             <AdjustIcon className={classes.toolIcon} />
             <Typography className={classes.toolText}>Khám Phá</Typography>
           </NavLink>
-          <div className={classes.tool}>
-            <AssessmentOutlinedIcon className={classes.toolIcon} />
-            <Typography className={classes.toolText}>Zing Chart</Typography>
-          </div>
-          <div className={classes.tool}>
-            <ReceiptOutlinedIcon className={classes.toolIcon} />
-            <Typography className={classes.toolText}>Theo Dõi</Typography>
-          </div>
         </div>
         {handleSignInPopUp()}
       </div>

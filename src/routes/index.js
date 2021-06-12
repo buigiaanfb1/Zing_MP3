@@ -1,4 +1,5 @@
 import Main from '../components/Main';
+import Playlist from '../components/Playlist';
 import Home from '../Templates/Admin/Home';
 import Album from '../Templates/Clients/Album';
 import MyMusic from '../Templates/Clients/MyMusic';
@@ -14,6 +15,11 @@ export const routesHome = [
     exact: true,
     path: '/album/:id',
     component: Album,
+  },
+  {
+    exact: true,
+    path: '/playlist/:id',
+    component: Playlist,
   },
   {
     exact: true,

@@ -8,50 +8,48 @@ export const uploadPrivatePlaylist = async (
   userId,
   displayName
 ) => {
-  // Kiểm tra người mới hay người cũ.
-  const res = await checkDocIfExist('playlists', userId);
-  // tạo mảng hứng giá trị
   let arrPlaylists = [];
-  //   Check < 1 là người mới
-  if (!res) {
+  // tạo mảng hứng giá trị
+  const docUser = await checkDocIfExist('users', userId);
+  // new doc playlist
+  let newDocPlaylist = {
+    userId: userId,
+    userName: displayName,
+    title: titlePlaylist,
+    songs: [],
+    // createdAt: timestamp(),
+  };
+  // Chưa có playlist (người mới) thì tự tạo 1 cái.
+  const { addDoc } = setCollection('playlists');
+  const docPlaylist = await addDoc(newDocPlaylist);
+  console.log(newDocPlaylist);
+  arrPlaylists.push({ ...newDocPlaylist, id: docPlaylist.id });
+  // Chưa có user (người mới) thì tự tạo 1 cái.
+  if (!docUser) {
+    // new doc users
     console.log('newbie');
-    arrPlaylists.push({ title: titlePlaylist });
-    // Chưa có playlist (người mới) thì tự tạo 1 cái.
-    const { addDocForPrivate } = setCollection('playlists');
-    await addDocForPrivate(
-      {
-        userId: userId,
-        userName: displayName,
-        playlists: [...arrPlaylists],
-        createdAt: timestamp(),
-      },
-      userId
-    );
+    let newDocUser = {
+      userId: userId,
+      userName: displayName,
+      songs: [],
+      // lưu lại id playlist để fetch api
+      playlists: [...arrPlaylists],
+      createdAt: timestamp(),
+    };
+    const { addDocForPrivate } = setCollection('users');
+    await addDocForPrivate(newDocUser, userId);
     console.log('Success');
-
-    // Có rồi thi update
   } else {
     console.log('old account');
-    // Copy ra địa chỉ mới
-    let dataArray = { ...res };
-    if (dataArray.playlists) {
-      // Get id của cái document
-      let id = dataArray.id;
-      arrPlaylists.push({ title: titlePlaylist });
-      // Thêm bài hát vào
-      dataArray.playlists = [...dataArray.playlists, ...arrPlaylists];
-      let data = dataArray;
-      // Update lại
-      await updateDoc('playlists', id, data);
-    } else {
-      // Get id của cái document
-      let id = dataArray.id;
-      arrPlaylists.push({ title: titlePlaylist });
-      // Thêm bài hát vào
-      dataArray = { ...dataArray, playlists: arrPlaylists };
-      let data = dataArray;
-      // Update lại
-      await updateDoc('playlists', id, data);
-    }
+    console.log(docUser);
+    let copyDocUser = { ...docUser };
+    let arrPlaylists = [
+      ...copyDocUser.playlists,
+      { ...newDocPlaylist, id: docPlaylist.id },
+    ];
+
+    let copyUsers = { ...copyDocUser, playlists: arrPlaylists };
+    // Update lại
+    await updateDoc('users', userId, copyUsers);
   }
 };

@@ -4,7 +4,7 @@ export const updateDoc = async (collection, id, updates) => {
   console.log(collection, id, updates);
   let docRef = await projectFirestore.collection(collection).doc(id);
   try {
-    const res = await docRef.update(updates);
+    await docRef.update(updates);
   } catch (err) {
     console.log(err.message);
   }

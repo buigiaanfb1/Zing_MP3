@@ -77,10 +77,10 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   toolText: {
-    fontSize: '14px',
-    fontFamily: "'Inter', sans-serif",
-    fontWeight: '500',
-    color: 'inherit',
+    fontSize: '14px !important',
+    fontFamily: "'Inter', sans-serif !important",
+    fontWeight: '500 !important',
+    color: 'inherit !important',
   },
 
   signInContainer: {

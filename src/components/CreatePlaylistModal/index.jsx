@@ -58,42 +58,47 @@ const CreatePlaylistModal = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <div className={classes.container}>
-              <Typography id="transition-modal-title" className={classes.title}>
-                Tạo playlist mới
-              </Typography>
-              <input
-                className={classes.input}
-                placeholder="Nhập tên playlist"
-                autoFocus
-                onChange={handleChange}
-              />
-              <div className={classes.rule}>
-                <Typography className={classes.titleRules}>
-                  Công khai
+            <form onSubmit={handleSubmit}>
+              <div className={classes.container}>
+                <Typography
+                  id="transition-modal-title"
+                  className={classes.title}
+                >
+                  Tạo playlist mới
                 </Typography>
-                <Typography className={classes.descriptionRules}>
-                  Mọi người có thể nhìn thấy playlist này
-                </Typography>
+                <input
+                  className={classes.input}
+                  placeholder="Nhập tên playlist"
+                  autoFocus
+                  onChange={handleChange}
+                />
+                <div className={classes.rule}>
+                  <Typography className={classes.titleRules}>
+                    Công khai
+                  </Typography>
+                  <Typography className={classes.descriptionRules}>
+                    Mọi người có thể nhìn thấy playlist này
+                  </Typography>
+                </div>
+                <div className={classes.rule}>
+                  <Typography className={classes.titleRules}>
+                    Phát ngẫu nhiên
+                  </Typography>
+                  <Typography className={classes.descriptionRules}>
+                    Luôn phát ngẫu nhiên tất cả bài hát
+                  </Typography>
+                </div>
+                <button
+                  className={`${classes.button} ${
+                    !playlistName ? classes.disable : ''
+                  }`}
+                  onClick={handleSubmit}
+                  disabled={uploading ? true : false}
+                >
+                  {uploading ? 'ĐANG TẠO...' : 'TẠO MỚI'}
+                </button>
               </div>
-              <div className={classes.rule}>
-                <Typography className={classes.titleRules}>
-                  Phát ngẫu nhiên
-                </Typography>
-                <Typography className={classes.descriptionRules}>
-                  Luôn phát ngẫu nhiên tất cả bài hát
-                </Typography>
-              </div>
-              <button
-                className={`${classes.button} ${
-                  !playlistName ? classes.disable : ''
-                }`}
-                onClick={handleSubmit}
-                disabled={uploading ? true : false}
-              >
-                {uploading ? 'ĐANG TẠO...' : 'TẠO MỚI'}
-              </button>
-            </div>
+            </form>
           </div>
         </Fade>
       </Modal>

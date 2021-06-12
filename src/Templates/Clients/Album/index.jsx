@@ -3,7 +3,7 @@ import { useStyles } from './styles';
 import { Grid, Typography } from '@material-ui/core';
 import pic from '../../../assets/images/600x600.jpeg';
 import { getDocument } from '../../../firebase/tools/getDocument';
-import Song from './modules/Song';
+import Song from '../../../components/Song';
 import { SELECTED_SONG, SELECTED_ALBUM } from './modules/constants';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -78,8 +78,8 @@ const Album = (props) => {
   const handleRenderForTheFirstTime = () => {
     return (
       <div className={classes.root}>
-        <Grid container spacing={0}>
-          <Grid item lg={3} md={4}>
+        <Grid container spacing={5}>
+          <Grid item lg={3} md={3}>
             <img
               src={albumFirst.cover}
               alt=""
