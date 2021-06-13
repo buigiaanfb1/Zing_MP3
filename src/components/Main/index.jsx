@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import Album from '../Album';
 import Header from '../Header';
 import { useStyles } from './styles';
+import { motion } from 'framer-motion';
+import { pageAnimation } from '../../common/animation';
 
 const Main = () => {
   const classes = useStyles();
@@ -71,15 +73,22 @@ const Main = () => {
     }
   };
   return (
-    <div className={classes.container}>
-      <Header isScrollMoreThanZero={y} />
-      <div className={classes.containerContent}>
-        {/* <div className={classes.bodyScroll} onScroll={handleScroll}>
+    <motion.div
+      variants={pageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
+      <div className={classes.container}>
+        <Header isScrollMoreThanZero={y} />
+        <div className={classes.containerContent}>
+          {/* <div className={classes.bodyScroll} onScroll={handleScroll}>
           {handleRenderAlbums()}
         </div> */}
-        <div className={classes.bodyScroll}>{handleRenderAlbums()}</div>
+          <div className={classes.bodyScroll}>{handleRenderAlbums()}</div>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -36,4 +36,13 @@ export const useStyles = makeStyles((theme) => ({
     marginRight: '-0px',
     marginBottom: '00px',
   },
+  createdBy: {
+    fontSize: '12px',
+    lineHeight: '1.75',
+    color: 'var(--text-secondary)',
+    textAlign: 'center',
+  },
+  userName: {
+    color: 'var(--text-primary)',
+  },
 }));

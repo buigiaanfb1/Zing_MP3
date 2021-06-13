@@ -7,9 +7,10 @@ import AddIcon from '@material-ui/icons/Add';
 import { Typography } from '@material-ui/core';
 import { getUser } from '../../firebase/tools/getUser';
 import { uploadPrivatePlaylist } from '../../firebase/tools/uploadPrivatePlaylist';
+
 import notify from '../../common/toastify';
 
-const CreatePlaylistModal = () => {
+const CreatePlaylistModal = ({ song }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [playlistName, setPlaylistName] = useState('');

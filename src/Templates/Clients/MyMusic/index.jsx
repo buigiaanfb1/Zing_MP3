@@ -10,6 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import history from '../../../history';
 import { CLEAR_ALBUM_SIGN_OUT } from './modules/constants';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
+import { pageAnimation } from '../../../common/animation';
 
 const MyMusic = () => {
   const classes = useStyles();
@@ -27,31 +29,44 @@ const MyMusic = () => {
     }
   };
   return (
-    <div className={`${classes.container} ${classes.bodyScroll}`}>
-      <Grid container spacing={0}>
-        <Grid item xs={4}></Grid>
-        <Grid item xs={4}>
-          <div className={`${classes.avatarContainer}`}>
-            <img src={user.photoURL} alt="avatar" className={classes.avatar} />
-            <Typography className={classes.name}>{user.displayName}</Typography>
-          </div>
-        </Grid>
-        <Grid item xs={4}>
-          <div style={{ paddingTop: '89px' }}>
-            <div
-              className={classes.iconContainer}
-              onClick={(e) => handleLogout()}
-            >
-              <ExitToAppIcon className={classes.iconSignOut} />
-              <div className={classes.popOver}>
-                <PopOver text="Đăng Xuất" />
+    <motion.div
+      variants={pageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+    >
+      <div className={`${classes.container} ${classes.bodyScroll}`}>
+        <Grid container spacing={0}>
+          <Grid item xs={4}></Grid>
+          <Grid item xs={4}>
+            <div className={`${classes.avatarContainer}`}>
+              <img
+                src={user.photoURL}
+                alt="avatar"
+                className={classes.avatar}
+              />
+              <Typography className={classes.name}>
+                {user.displayName}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={4}>
+            <div style={{ paddingTop: '89px' }}>
+              <div
+                className={classes.iconContainer}
+                onClick={(e) => handleLogout()}
+              >
+                <ExitToAppIcon className={classes.iconSignOut} />
+                <div className={classes.popOver}>
+                  <PopOver text="Đăng Xuất" />
+                </div>
               </div>
             </div>
-          </div>
+          </Grid>
         </Grid>
-      </Grid>
-      <MyLibrary />
-    </div>
+        <MyLibrary />
+      </div>
+    </motion.div>
   );
 };
 

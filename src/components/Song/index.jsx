@@ -6,7 +6,7 @@ import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import { Grid, Typography } from '@material-ui/core';
 import BaCham from '../BaCham';
 
-const Song = ({ song }) => {
+const Song = ({ song, handleDispatchSong }) => {
   const classes = useStyles();
 
   const formatTime = (duration) => {
@@ -15,6 +15,10 @@ const Song = ({ song }) => {
       ':' +
       ('0' + Math.floor(duration % 60)).slice(-2)
     );
+  };
+
+  const handleUpToParent = () => {
+    handleDispatchSong(song, song.title);
   };
 
   return (
@@ -26,7 +30,10 @@ const Song = ({ song }) => {
       >
         <Grid container spacing={0}>
           <Grid item xs={6}>
-            <div className={classes.songNameImgAuthContainer}>
+            <div
+              className={classes.songNameImgAuthContainer}
+              onClick={() => handleUpToParent()}
+            >
               <img
                 src={song.picture ? song.picture : defaultCoverSong}
                 alt="song"
@@ -52,12 +59,12 @@ const Song = ({ song }) => {
           </Grid>
           <Grid item xs={4}>
             <div className={classes.tools}>
-              <div className={classes.iconContainer}>
+              {/* <div className={classes.iconContainer}>
                 <FavoriteBorderOutlinedIcon className={classes.icon} />
-              </div>
-              <div className={classes.iconContainer}>
+              </div> */}
+              <div className={classes.iconContainerBaCham}>
                 {/* <MoreHorizOutlinedIcon className={classes.icon} /> */}
-                <BaCham />
+                <BaCham song={song} />
               </div>
             </div>
           </Grid>

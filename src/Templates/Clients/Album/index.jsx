@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
 import { Grid, Typography } from '@material-ui/core';
-import pic from '../../../assets/images/600x600.jpeg';
 import { getDocument } from '../../../firebase/tools/getDocument';
 import Song from '../../../components/Song';
 import { SELECTED_SONG, SELECTED_ALBUM } from './modules/constants';
 import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
+import { pageAnimation } from '../../../common/animation';
 
 const Album = (props) => {
   const id = props.match.params.id;
@@ -63,6 +64,7 @@ const Album = (props) => {
   // component khác sử dụng
   // Chặn dispatch nếu click vào bài đang hát (giúp k bị re-render)
   const handleDispatchSong = (song, songTitle) => {
+    console.log(song, songTitle);
     if (songTitle !== songCurrent) {
       dispatch({
         type: SELECTED_SONG,
@@ -77,35 +79,42 @@ const Album = (props) => {
   // sử dụng data của riêng component để render
   const handleRenderForTheFirstTime = () => {
     return (
-      <div className={classes.root}>
-        <Grid container spacing={5}>
-          <Grid item lg={3} md={3}>
-            <img
-              src={albumFirst.cover}
-              alt=""
-              width="100%"
-              className={classes.img}
-            />
-            <div className={classes.containerDescription}>
-              <Typography className={classes.titleAlbum}>
-                {albumFirst.title}
-              </Typography>
-            </div>
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+      >
+        <div className={classes.root}>
+          <Grid container spacing={5}>
+            <Grid item lg={3} md={3}>
+              <img
+                src={albumFirst.cover}
+                alt=""
+                width="100%"
+                className={classes.img}
+              />
+              <div className={classes.containerDescription}>
+                <Typography className={classes.titleAlbum}>
+                  {albumFirst.title}
+                </Typography>
+              </div>
+            </Grid>
+            <Grid item lg={9} md={8}>
+              {albumFirst.songs.map((song, index) => {
+                return (
+                  <div
+                    key={index}
+                    onDoubleClick={() => handleTwoDispatch(song, song.title)}
+                  >
+                    <Song song={song} handleDispatchSong={handleTwoDispatch} />
+                  </div>
+                );
+              })}
+            </Grid>
           </Grid>
-          <Grid item lg={9} md={8}>
-            {albumFirst.songs.map((song, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() => handleTwoDispatch(song, song.title)}
-                >
-                  <Song song={song} />
-                </div>
-              );
-            })}
-          </Grid>
-        </Grid>
-      </div>
+        </div>
+      </motion.div>
     );
   };
 
@@ -113,7 +122,7 @@ const Album = (props) => {
   const handleRenderNextTime = () => {
     return (
       <div className={classes.root}>
-        <Grid container spacing={0}>
+        <Grid container spacing={5}>
           <Grid item lg={3} md={4}>
             <img
               src={album.cover}
@@ -121,18 +130,20 @@ const Album = (props) => {
               width="100%"
               className={classes.img}
             />
-            <Typography className={classes.titleAlbum}>
-              {album.title}
-            </Typography>
+            <div className={classes.containerDescription}>
+              <Typography className={classes.titleAlbum}>
+                {album.title}
+              </Typography>
+            </div>
           </Grid>
           <Grid item lg={9} md={8}>
             {album.songs.map((song, index) => {
               return (
                 <div
                   key={index}
-                  onClick={() => handleDispatchSong(song, song.title)}
+                  onDoubleClick={() => handleDispatchSong(song, song.title)}
                 >
-                  <Song song={song} />
+                  <Song song={song} handleDispatchSong={handleDispatchSong} />
                 </div>
               );
             })}

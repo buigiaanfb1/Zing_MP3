@@ -36,12 +36,14 @@ const Home = () => {
 
   // fetch tất cả thông tin user ( 1 user) album, playlist;
   const fetchUserInfo = async () => {
-    const res = await getDocument('users', user.uid);
-    if (res) {
-      dispatch({
-        type: FETCH_USER_INFO,
-        payload: res,
-      });
+    if (user) {
+      const res = await getDocument('users', user.uid);
+      if (res) {
+        dispatch({
+          type: FETCH_USER_INFO,
+          payload: res,
+        });
+      }
     }
   };
   //

@@ -1,4 +1,5 @@
 import {
+  ADD_SONG_TO_QUEUE,
   FETCH_ALBUMS,
   FETCH_USER_INFO,
 } from '../../Templates/Clients/Home/modules/constants';
@@ -65,6 +66,15 @@ export default (state = initialState, { type, payload }) => {
         ...state.selectedAlbum,
         songs: selectedSongOnAlbum,
       };
+      return { ...state };
+    }
+
+    case ADD_SONG_TO_QUEUE: {
+      delete payload.isSelected;
+      console.log(payload);
+      let selectedAlbumCopy = { ...state.selectedAlbum };
+      selectedAlbumCopy.songs = [...selectedAlbumCopy.songs, payload];
+      state.selectedAlbum = { ...selectedAlbumCopy };
       return { ...state };
     }
 

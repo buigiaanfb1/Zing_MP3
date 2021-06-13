@@ -90,8 +90,11 @@ const Songs = () => {
     if (albumFirst && albumFirst.songs && render <= 1) {
       return albumFirst?.songs.map((song, index) => {
         return (
-          <div key={index} onClick={() => handleTwoDispatch(song, song.title)}>
-            <Song song={song} />
+          <div
+            key={index}
+            onDoubleClick={() => handleTwoDispatch(song, song.title)}
+          >
+            <Song song={song} handleDispatchSong={handleTwoDispatch} />
           </div>
         );
       });
@@ -103,10 +106,10 @@ const Songs = () => {
         return album?.songs.map((song, index) => {
           return (
             <div
-              onClick={() => handleDispatchSong(song, song.title)}
+              onDoubleClick={() => handleDispatchSong(song, song.title)}
               key={index}
             >
-              <Song song={song} />
+              <Song song={song} handleDispatchSong={handleDispatchSong} />
             </div>
           );
         });

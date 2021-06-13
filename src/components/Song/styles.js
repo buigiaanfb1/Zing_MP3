@@ -54,6 +54,7 @@ export const useStyles = makeStyles((theme) => ({
     fontWeight: '500',
   },
   tools: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -62,6 +63,12 @@ export const useStyles = makeStyles((theme) => ({
   icon: {
     width: '18px',
     height: '18px',
-    marginLeft: '1rem',
+    marginRight: '0.5rem',
   },
+  // iconContainerBaCham: {
+  //   position: 'absolute',
+  //   top: '50%',
+  //   transform: 'translate(0, -50%)',
+  //   zIndex: '99999',
+  // },
 }));

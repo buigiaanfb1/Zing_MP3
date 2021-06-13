@@ -32,7 +32,6 @@ const PlayerControls = () => {
   const dispatch = useDispatch();
   // selector
   let song = useSelector((state) => state.shareStore.selectedSong);
-  console.log('Player control render');
 
   useEffect(() => {
     if (song) {
