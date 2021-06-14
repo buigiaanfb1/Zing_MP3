@@ -17,6 +17,7 @@ import {
   CHANGE_PREVIOUS_SONG,
   IS_PLAYING,
 } from '../../Templates/Clients/Album/modules/constants';
+import BaCham from '../BaCham';
 
 const PlayerControls = () => {
   const classes = useStyles();
@@ -35,7 +36,7 @@ const PlayerControls = () => {
 
   useEffect(() => {
     if (song) {
-      handlerAutoPlay();
+      // handlerAutoPlay();
     }
   }, [song]);
 
@@ -83,20 +84,21 @@ const PlayerControls = () => {
   };
 
   const handlerAutoPlay = () => {
-    let audio = document.querySelector('audio').play();
-    // audioRef.current.play();
-    // setPlaying(true);
-    if (audio !== undefined) {
-      audio
-        .then((_) => {
-          // Autoplay started!
-          audioRef.current.play();
-          setPlaying(true);
-        })
-        .catch((error) => {
-          // Autoplay was prevented.
-          // Show a "Play" button so that user can start playback.
-        });
+    // nếu không phải nhạc lưu dưới local thì aut
+    if (!song.hasOwnProperty('local')) {
+      let audio = document.querySelector('audio').play();
+      if (audio !== undefined) {
+        audio
+          .then((_) => {
+            // Autoplay started!
+            audioRef.current.play();
+            setPlaying(true);
+          })
+          .catch((error) => {
+            // Autoplay was prevented.
+            // Show a "Play" button so that user can start playback.
+          });
+      }
     }
   };
 
@@ -131,7 +133,9 @@ const PlayerControls = () => {
                   <div className={classes.containerAvatar}>
                     <img
                       src={song.picture ? song.picture : defaultCoverSong}
-                      className={classes.avatar}
+                      className={`${classes.avatar} ${
+                        playing ? 'spin-cover' : ''
+                      }`}
                     />
                   </div>
                   <div className={classes.containerText}>
@@ -143,8 +147,9 @@ const PlayerControls = () => {
                     <Typography variant="caption">{song.artist}</Typography>
                   </div>
                   <div className={classes.tools}>
-                    <FavoriteBorderOutlinedIcon className={classes.icon} />
-                    <MoreHorizOutlinedIcon className={classes.icon} />
+                    {/* <FavoriteBorderOutlinedIcon className={classes.icon} /> */}
+                    {/* <MoreHorizOutlinedIcon className={classes.icon} /> */}
+                    <BaCham song={song} />
                   </div>
                 </div>
               </Grid>

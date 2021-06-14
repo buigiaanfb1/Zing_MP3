@@ -43,11 +43,11 @@ export const setStorage = () => {
     }
   };
 
-  const uploadImageSong = async (file, titleSong) => {
-    filePath = `imageSongs/${titleSong}`;
+  const uploadImageSong = async (file, picture, titleAlbum) => {
+    filePath = `imageSongs/${titleAlbum}/${file.name}/${titleAlbum}`;
     const storageRef = projectStorage.ref(filePath);
     try {
-      const res = await storageRef.putString(file, 'data_url', {
+      const res = await storageRef.putString(picture, 'data_url', {
         contentType: 'image/jpg',
       });
       let url = await res.ref.getDownloadURL();

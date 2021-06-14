@@ -171,4 +171,13 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  animSpinCover: {
+    animation: 'spin-cover infinite 20s linear',
+  },
+
+  '@keyframes spin-cover': {
+    from: { transform: `rotate(0deg)` },
+    to: { transform: `rotate(360deg)` },
+  },
 }));

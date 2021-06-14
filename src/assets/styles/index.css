@@ -107,6 +107,19 @@ body {
   min-width: 1280px;
 }
 
+.spin-cover {
+  animation: spin-cover infinite 10s linear;
+}
+
+@keyframes spin-cover {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

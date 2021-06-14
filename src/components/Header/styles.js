@@ -15,6 +15,11 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: 'transparent',
     transition: 'all 0.5s linear',
   },
+  ['@media (max-width:980px)']: {
+    header: {
+      display: 'none',
+    },
+  },
 
   backgroundMoreThanZero: {
     backgroundColor: 'var(--layout-bg)',

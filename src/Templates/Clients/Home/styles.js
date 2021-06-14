@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme) => ({
   bgColor: {
     backgroundImage: `url(${background})`,
     backgroundAttachment: 'fixed',
+    overflow: 'hidden',
   },
   root: {
     flexGrow: 1,
@@ -40,6 +41,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   openQueueLaptop: {
+    overflow: 'hidden',
     zIndex: '99999',
     transform: 'translate(0%, 0%)',
     backgroundColor: 'var(--queue-player-popup-bg)',
@@ -51,6 +53,16 @@ export const useStyles = makeStyles((theme) => ({
       width: 'calc(100% - 560px)',
       minHeight: '100%',
       marginRight: '320px',
+    },
+  },
+  ['@media (max-width:980px)']: {
+    navbar: {
+      width: '0px',
+    },
+    main: {
+      width: 'calc(100%)',
+      minHeight: '100%',
+      // marginRight: '320px',
     },
   },
 }));

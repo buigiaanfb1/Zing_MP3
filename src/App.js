@@ -16,9 +16,13 @@ function App() {
 
   const handleDispatchMusicFromLocalStorage = () => {
     if (localStorage.getItem('zmp3_current_player')) {
+      let songFromLocal = JSON.parse(
+        localStorage.getItem('zmp3_current_player')
+      );
+      songFromLocal = { ...songFromLocal, local: true };
       dispatch({
         type: SELECTED_SONG,
-        payload: JSON.parse(localStorage.getItem('zmp3_current_player')),
+        payload: songFromLocal,
       });
     }
   };

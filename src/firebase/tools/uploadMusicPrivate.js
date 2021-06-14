@@ -21,6 +21,7 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
     console.log('newbie');
     if (info?.picture) {
       const { url: imgSongUrl } = await uploadImageSong(
+        file,
         info.picture,
         displayName
       );

@@ -12,6 +12,7 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     color: '#fff',
     fontFamily: "'Inter', sans-serif",
+    // overflow: 'hidden',
   },
   wrapper: {
     padding: '0 8px',

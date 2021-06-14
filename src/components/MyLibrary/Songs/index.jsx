@@ -25,6 +25,7 @@ const Songs = () => {
   const dispatch = useDispatch();
   // get album từ store
   const album = useSelector((state) => state.shareStore.selectedAlbum);
+  const userInfo = useSelector((state) => state.shareStore.userInfo);
 
   useEffect(() => {
     handleGetAlbum();
@@ -154,7 +155,7 @@ const Songs = () => {
           </div>
         </div>
       </div>
-      {albumFirst || album ? handleRenderSongs() : handleIfNothing()}
+      {userInfo ? handleRenderSongs() : handleIfNothing()}
     </div>
   );
 };
