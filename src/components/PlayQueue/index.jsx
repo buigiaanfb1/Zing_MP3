@@ -73,26 +73,25 @@ const PlayerQueue = () => {
   };
 
   return (
-    // <div className={`${classes.container}`}>
-    //   <div className={`${classes.wrapper} ${classes.bodyScroll}`}>
-    //     <div className={classes.navbar}>
-    //       <div className={classes.textContainer}>
-    //         <Typography className={classes.textSelected}>
-    //           Danh sách phát
-    //         </Typography>
-    //         <Typography className={classes.text}>Nghe gần đây</Typography>
-    //       </div>
-    //       <div className={classes.containerIcon}>
-    //         <AccessAlarmsOutlinedIcon className={classes.icon} />
-    //       </div>
-    //       <div className={classes.containerIcon}>
-    //         <MoreHorizOutlinedIcon className={classes.icon} />
-    //       </div>
-    //     </div>
-    //     {handleRenderPlayerQueue()}
-    //   </div>
-    // </div>
-    <div></div>
+    <div className={`${classes.container}`}>
+      <div className={`${classes.wrapper} ${classes.bodyScroll}`}>
+        <div className={classes.navbar}>
+          <div className={classes.textContainer}>
+            <Typography className={classes.textSelected}>
+              Danh sách phát
+            </Typography>
+            <Typography className={classes.text}>Nghe gần đây</Typography>
+          </div>
+          <div className={classes.containerIcon}>
+            <AccessAlarmsOutlinedIcon className={classes.icon} />
+          </div>
+          <div className={classes.containerIcon}>
+            <MoreHorizOutlinedIcon className={classes.icon} />
+          </div>
+        </div>
+        {handleRenderPlayerQueue()}
+      </div>
+    </div>
   );
 };
 
