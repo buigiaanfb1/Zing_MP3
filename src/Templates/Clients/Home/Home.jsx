@@ -14,11 +14,14 @@ import { getDocument } from '../../../firebase/tools/getDocument';
 import { getUser } from '../../../firebase/tools/getUser';
 import { FETCH_ALBUMS, FETCH_USER_INFO } from './modules/constants';
 import PrivateRoutesIndex from '../../PrivateRoutesIndex';
+import PlayerControlForPhone from '../../../components/PlayerControlForPhone';
 
 const Home = () => {
   // init
   const classes = useStyles();
   const isLaptop = useMediaQuery({ query: '(max-width: 1636px)' });
+  const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
   const openQueue = useSelector((state) => state.shareStore.openQueue);
   const dispatch = useDispatch();
   const { res: user } = getUser();
@@ -107,7 +110,7 @@ const Home = () => {
         >
           <PlayerQueue />
         </div>
-        <PlayerControls />
+        {!isMobile ? <PlayerControls /> : <PlayerControlForPhone />}
       </Router>
     </div>
   );

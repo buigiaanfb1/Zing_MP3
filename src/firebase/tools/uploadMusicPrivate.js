@@ -14,6 +14,7 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
   const { url: songUrl } = await uploadMusic(file);
   //   parse ra để lấy hình ảnh, tên artist,....
   const info = await parseSongMp3(file);
+  console.log(info);
   // tạo mảng hứng giá trị
   let arrSongs = [];
   //   Check < 1 là người mới
@@ -53,6 +54,7 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
       let id = dataArray.id;
       if (info?.picture) {
         const { url: imgSongUrl } = await uploadImageSong(
+          file,
           info.picture,
           displayName
         );

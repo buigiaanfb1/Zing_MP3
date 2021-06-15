@@ -36,6 +36,7 @@ export const useStyles = makeStyles((theme) => ({
 
   ['@media (max-width:1637px)']: {
     playerQueue: {
+      display: 'block',
       transform: 'translate(100%, 0%)',
     },
   },
@@ -43,26 +44,41 @@ export const useStyles = makeStyles((theme) => ({
   openQueueLaptop: {
     overflow: 'hidden',
     zIndex: '99999',
+    display: 'block',
     transform: 'translate(0%, 0%)',
     backgroundColor: 'var(--queue-player-popup-bg)',
   },
 
   ['@media (min-width:1637px)']: {
-    // transform: 'translate(-100%, 0%)',
     main: {
       width: 'calc(100% - 560px)',
       minHeight: '100%',
       marginRight: '320px',
     },
   },
-  ['@media (max-width:980px)']: {
+  ['@media (max-width:1024px)']: {
     navbar: {
-      width: '0px',
+      // backgroundColor: 'var(--main-color)',
+      position: 'fixed',
+      width: '70px',
+      top: '0',
+      height: 'calc(100vh - 70px)',
+      paddingBottom: '50px',
+      transition: 'width .3s ease-out',
     },
     main: {
-      width: 'calc(100%)',
+      marginLeft: '70px',
+      height: '100vh',
+      width: 'calc(100% - 70px)',
       minHeight: '100%',
-      // marginRight: '320px',
+    },
+    playerQueue: {
+      display: 'none',
+      transform: 'translate(100%, 0%)',
+    },
+    openQueueLaptop: {
+      display: 'block',
+      transform: 'translate(0%, 0%)',
     },
   },
 }));

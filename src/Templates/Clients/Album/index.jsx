@@ -86,8 +86,8 @@ const Album = (props) => {
         exit="exit"
       >
         <div className={classes.root}>
-          <Grid container spacing={5}>
-            <Grid item lg={3} md={3}>
+          <Grid container spacing={3}>
+            <Grid item lg={3} md={4}>
               <img
                 src={albumFirst.cover}
                 alt=""
@@ -122,7 +122,7 @@ const Album = (props) => {
   const handleRenderNextTime = () => {
     return (
       <div className={classes.root}>
-        <Grid container spacing={5}>
+        <Grid container spacing={3}>
           <Grid item lg={3} md={4}>
             <img
               src={album.cover}
@@ -170,9 +170,12 @@ const Album = (props) => {
   };
 
   return (
-    <div className={`${classes.container} ${classes.bodyScroll}`}>
-      {handleRenderSongs()}
-    </div>
+    <>
+      <div className={`${classes.container} ${classes.bodyScroll}`}>
+        {handleRenderSongs()}
+        <div style={{ height: '90px' }}></div>
+      </div>
+    </>
   );
 };
 

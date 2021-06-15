@@ -40,4 +40,12 @@ export const useStyles = makeStyles((theme) => ({
     color: 'var(--text-primary)',
     backgroundColor: 'var(--tab-active-bg)',
   },
+  ['@media (max-width:480px)']: {
+    menuSelected: {
+      fontSize: '10px',
+    },
+    menuNotSelected: {
+      fontSize: '10px',
+    },
+  },
 }));

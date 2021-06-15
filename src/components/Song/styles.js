@@ -71,4 +71,16 @@ export const useStyles = makeStyles((theme) => ({
   //   transform: 'translate(0, -50%)',
   //   zIndex: '99999',
   // },
+  ['@media (max-width:480px)']: {
+    songTitle: {
+      whiteSpace: 'wrap',
+      textOverflow: 'clip',
+      overflow: 'hidden',
+    },
+    author: {
+      whiteSpace: 'wrap',
+      textOverflow: 'clip',
+      overflow: 'hidden',
+    },
+  },
 }));

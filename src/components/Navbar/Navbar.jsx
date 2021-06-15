@@ -1,17 +1,17 @@
 import React from 'react';
 import { useStyles } from './styles';
 import LogoDark from '../../assets/images/logo-dark.svg';
-import Logo from '../../assets/images/logo-dark.png';
+import LogoTablet from '../../assets/images/logoTablet.svg';
 import MusicVideoIcon from '@material-ui/icons/MusicVideo';
 import AdjustIcon from '@material-ui/icons/Adjust';
-import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
-import ReceiptOutlinedIcon from '@material-ui/icons/ReceiptOutlined';
 import { Typography } from '@material-ui/core';
 import { Link, NavLink } from 'react-router-dom';
 import { getUser } from '../../firebase/tools/getUser';
 import { login } from '../../firebase/tools/useLogin';
 import CreatePlaylistModal from '../CreatePlaylistModal';
+import { useMediaQuery } from 'react-responsive';
 const Navbar = () => {
+  const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
   const classes = useStyles();
   const { res } = getUser();
 
@@ -63,9 +63,15 @@ const Navbar = () => {
     <div className={classes.bgColor}>
       <div className={classes.container}>
         <div className={classes.containerLogo}>
-          <Link to="/">
-            <img src={LogoDark} className={classes.logo} />
-          </Link>
+          {isTablet ? (
+            <Link to="/">
+              <img src={LogoTablet} className={classes.logoTablet} />
+            </Link>
+          ) : (
+            <Link to="/">
+              <img src={LogoDark} className={classes.logo} />
+            </Link>
+          )}
         </div>
         <div className={classes.tools}>
           {handleUserLogin()}

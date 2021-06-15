@@ -37,8 +37,8 @@ const MyMusic = () => {
     >
       <div className={`${classes.container} ${classes.bodyScroll}`}>
         <Grid container spacing={0}>
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2} md={4}></Grid>
+          <Grid item xs={8} md={4}>
             <div className={`${classes.avatarContainer}`}>
               <img
                 src={user.photoURL}
@@ -50,7 +50,7 @@ const MyMusic = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2} md={4}>
             <div style={{ paddingTop: '89px' }}>
               <div
                 className={classes.iconContainer}

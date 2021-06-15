@@ -13,11 +13,26 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: '120px',
     maxHeight: '40px',
   },
+  logoTablet: {
+    maxWidth: '120px',
+    maxHeight: '45px',
+    transform: 'translate(-35%, 0)',
+  },
   bgColor: {
     backgroundColor: 'var(--main-color)',
     height: 'calc(100vh)',
     width: 'inherit',
   },
+
+  // ['@media (max-width:1024px)']: {
+  //   bgColor: {
+  //     backgroundColor: 'var(--main-color)',
+  //     position: 'fixed',
+  //     width: '70px',
+  //     paddingBottom: '50px',
+  //     transition: 'width .3s ease-out',
+  //   },
+  // },
 
   tools: {
     padding: '1.1rem 0 1rem 0',

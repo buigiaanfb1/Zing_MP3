@@ -61,10 +61,12 @@ const Album = ({ albums, title }) => {
         },
       },
       {
-        breakpoint: 400,
+        breakpoint: 481,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 6,
+          slidesToScroll: 0,
+          rows: 1,
+          slidesPerRow: 1,
         },
       },
     ],
@@ -74,25 +76,25 @@ const Album = ({ albums, title }) => {
   const handleRenderAlbum = () => {
     return albums.map((album, index) => {
       return (
-        <div className={classes.containerAlbum} key={index}>
-          <div className={classes.containerImageAlbum}>
-            <img src={album.cover} className={classes.imageAlbum} />
-            <div className={classes.overlay}>
-              <div className={classes.tools}>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
-                <div className={classes.iconPlayContainer}>
-                  <PlayArrowIcon className={classes.iconPlay} />
+        <Link to={`/album/${album.id}`} className={classes.a}>
+          <div className={classes.containerAlbum} key={index}>
+            <div className={classes.containerImageAlbum}>
+              <img src={album.cover} className={classes.imageAlbum} />
+              <div className={classes.overlay}>
+                <div className={classes.tools}>
+                  <FavoriteBorderOutlinedIcon className={classes.icon} />
+                  <div className={classes.iconPlayContainer}>
+                    <PlayArrowIcon className={classes.iconPlay} />
+                  </div>
+                  <MoreHorizOutlinedIcon className={classes.icon} />
                 </div>
-                <MoreHorizOutlinedIcon className={classes.icon} />
               </div>
             </div>
-          </div>
-          <Link to={`/album/${album.id}`} className={classes.a}>
             <div className={classes.containerTitle}>
               <Typography className={classes.title}>{album.title}</Typography>
             </div>
-          </Link>
-        </div>
+          </div>
+        </Link>
       );
     });
   };

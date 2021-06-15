@@ -8,6 +8,7 @@ const Test = () => {
     document.getElementById('cover').src = info.picture;
     console.log(info);
   };
+
   return (
     <div style={{ marginTop: '100px' }}>
       <input type="file" onChange={handleChange} />

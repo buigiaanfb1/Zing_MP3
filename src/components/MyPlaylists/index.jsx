@@ -55,8 +55,29 @@ const MyPlaylists = () => {
       {
         breakpoint: 1281,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 960,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 481,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
     ],
@@ -66,7 +87,7 @@ const MyPlaylists = () => {
     if (userInfo && userInfo.playlists.length > 0) {
       return userInfo.playlists.map((playlist, index) => {
         return (
-          <div className={classes.containerPlaylist}>
+          <div className={classes.containerPlaylist} key={index}>
             <div className={classes.containerImagePlaylist}>
               <img src={albumDefault} className={classes.imagePlaylist} />
               <div className={classes.overlay}>

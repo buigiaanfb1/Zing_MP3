@@ -34,6 +34,15 @@ export const useStyles = makeStyles((theme) => ({
     inset: '0',
     overflow: 'hidden auto',
     marginRight: '-0px',
-    marginBottom: '00px',
+    marginBottom: '90px',
+  },
+
+  ['@media (max-width:480px)']: {
+    bodyScroll: {
+      paddingBottom: '90px',
+    },
+    container: {
+      padding: '7rem 1rem',
+    },
   },
 }));

@@ -60,9 +60,10 @@ export const useStyles = makeStyles((theme) => ({
   },
   containerNothing: {
     width: '100%',
-    padding: '30px 0',
+    padding: '30px 1rem',
     minHeight: '220px',
     backgroundColor: 'var(--alpha-bg)',
+    borderRadius: '8px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -73,4 +74,10 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: '20px',
   },
   text: {},
+
+  ['@media (max-width:480px)']: {
+    tag: {
+      display: 'none',
+    },
+  },
 }));

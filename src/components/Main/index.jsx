@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Album from '../Album';
 import Header from '../Header';
+import daw from '../../assets/images/album1.jpeg';
 import { useStyles } from './styles';
 import { motion } from 'framer-motion';
 import { pageAnimation } from '../../common/animation';
+import { useMediaQuery } from 'react-responsive';
+import MainForMobile from '../MainForMobile';
 
 const Main = () => {
   const classes = useStyles();
+  const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
   const [y, setY] = useState(false);
   const albums = useSelector((state) => state.shareStore.albums);
   const title = [
@@ -79,13 +83,16 @@ const Main = () => {
       animate="show"
       exit="exit"
     >
-      <div className={classes.container}>
-        <Header isScrollMoreThanZero={y} />
-        <div className={classes.containerContent}>
-          <div className={classes.bodyScroll} onScroll={handleScroll}>
-            {handleRenderAlbums()}
-          </div>
-        </div>
+      {/* <Header isScrollMoreThanZero={y} /> */}
+      <div
+        className={`${classes.container} ${classes.bodyScroll}`}
+        onScroll={handleScroll}
+      >
+        {!isMobile ? (
+          <div>{handleRenderAlbums()}</div>
+        ) : (
+          <MainForMobile albums={albums} />
+        )}
       </div>
     </motion.div>
   );

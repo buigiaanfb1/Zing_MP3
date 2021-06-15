@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   container: {
     position: 'relative',
     padding: '0 3.5rem',
+    overflowY: 'hidden',
   },
 
   iconSignOut: {
@@ -67,5 +68,17 @@ export const useStyles = makeStyles((theme) => ({
     overflow: 'hidden auto',
     marginRight: '-0px',
     marginBottom: '90px',
+  },
+
+  ['@media (max-width:480px)']: {
+    bodyScroll: {
+      marginBottom: '200px',
+    },
+
+    container: {
+      position: 'relative',
+      padding: '0 0.5rem',
+      overflowY: 'hidden',
+    },
   },
 }));
