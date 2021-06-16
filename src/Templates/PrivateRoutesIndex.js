@@ -6,7 +6,7 @@ import Header from '../components/Header';
 const PrivateLayoutClient = (props) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {props.children}
     </>
   );

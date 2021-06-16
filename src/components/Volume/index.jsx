@@ -13,8 +13,6 @@ const Volume = () => {
     document.getElementById('audio').volume = volume.volume;
   }, []);
 
-  console.log(volume);
-
   // Unmute thì âm thanh vẫn như chỗ cũ
   const lastCurrentVolume = () => {
     document.getElementById('audio').volume = volume.lastVolume;

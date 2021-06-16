@@ -45,4 +45,13 @@ export const useStyles = makeStyles((theme) => ({
   userName: {
     color: 'var(--text-primary)',
   },
+
+  ['@media (max-width:480px)']: {
+    bodyScroll: {
+      paddingBottom: '90px',
+    },
+    container: {
+      padding: '7rem 1rem',
+    },
+  },
 }));

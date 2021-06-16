@@ -16,7 +16,6 @@ const PlayerQueue = () => {
   const isPlaying = useSelector((state) => state.shareStore.isPlaying);
 
   const handleDispatchSong = (song) => {
-    console.log(song);
     if (!song.isSelected) {
       dispatch({
         type: SELECTED_SONG,

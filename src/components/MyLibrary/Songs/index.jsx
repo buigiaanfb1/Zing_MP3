@@ -17,7 +17,6 @@ import {
 const Songs = () => {
   const classes = useStyles();
   const { res: user } = getUser();
-  console.log('songs render library');
   const [songCurrent, setSongCurrent] = useState(null);
   const [render, setRender] = useState(1);
   // render lần đầu và duy nhất 1 lần
@@ -103,7 +102,6 @@ const Songs = () => {
     // chạy những lần còn lại @@
     else {
       if (album && render != 1) {
-        console.log(album);
         return album?.songs.map((song, index) => {
           return (
             <div
@@ -124,7 +122,7 @@ const Songs = () => {
       <div className={classes.containerNothing}>
         <MusicNoteOutlinedIcon className={classes.icon} />
         <span className={classes.text}>
-          Không có Bài hát trong thư viện nhạc cá nhân
+          Bạn chưa có bài hát nào trong thư viện! Vui lòng tải lên.
         </span>
       </div>
     );
@@ -155,7 +153,7 @@ const Songs = () => {
           </div>
         </div>
       </div>
-      {userInfo ? handleRenderSongs() : handleIfNothing()}
+      {userInfo?.songs.length > 0 ? handleRenderSongs() : handleIfNothing()}
     </div>
   );
 };

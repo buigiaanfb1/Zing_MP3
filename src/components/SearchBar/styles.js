@@ -9,6 +9,7 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     borderRadius: '50px',
     width: '100%',
+    marginRight: '1rem',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
@@ -27,8 +28,11 @@ export const useStyles = makeStyles((theme) => ({
   inputRoot: {
     color: 'inherit',
     height: '40px',
+    fontFamily: "'Inter', sans-serif",
+    fontSize: '14px',
   },
   inputInput: {
+    cursor: 'not-allowed',
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
@@ -36,6 +40,20 @@ export const useStyles = makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: '54ch',
+    },
+  },
+
+  ['@media (max-width:960px)']: {
+    inputInput: {
+      width: '30ch',
+    },
+  },
+  ['@media (max-width:600px)']: {
+    search: {
+      display: 'none',
+    },
+    inputInput: {
+      display: 'none',
     },
   },
 }));

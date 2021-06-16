@@ -69,22 +69,18 @@ const Home = () => {
         // lấy url để add vào doc
         const { url: songUrl } = await uploadMusicAdmin(file, titlePath);
         const info = await parseSongMp3(file);
-        console.log(info);
         if (info?.picture) {
-          console.log(info.picture);
           const { url: imgSongUrl } = await uploadImageSong(
             file,
             info.picture,
             titlePath
           );
-          console.log(imgSongUrl);
           document.getElementById('cover').src = imgSongUrl;
           arrSongs.push({ ...info, song: songUrl, picture: imgSongUrl });
         } else {
           arrSongs.push({ ...info, song: songUrl, picture: '' });
         }
       }
-      console.log(arrSongs);
       // add Doc
       const res = await addDoc({
         title: content.albumTitle,

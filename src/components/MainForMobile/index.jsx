@@ -5,12 +5,11 @@ import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 const MainForMobile = ({ albums }) => {
   const classes = useStyles();
-  console.log(albums);
   const handleRenderAlbum = () => {
     if (albums) {
-      return albums.map((album) => {
+      return albums.map((album, index) => {
         return (
-          <Grid item xs={6}>
+          <Grid item xs={6} key={index}>
             <Link to={`/album/${album.id}`} className={classes.a}>
               <div className={classes.containerImg}>
                 <img src={album.cover} className={classes.img} />

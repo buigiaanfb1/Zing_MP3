@@ -28,6 +28,7 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: 'var(--alpha-bg)',
     border: '1px solid var(--border-primary)',
     marginRight: '15px',
+    cursor: 'pointer',
   },
   upload: {
     fontFamily: 'inherit',
@@ -42,6 +43,7 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: '999px',
     backgroundColor: 'var(--purple-primary)',
     border: '1px solid var(--purple-primary)',
+    cursor: 'not-allowed',
   },
   listenAll: {
     fontFamily: 'inherit',
@@ -73,7 +75,9 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '80px',
     marginBottom: '20px',
   },
-  text: {},
+  text: {
+    textAlign: 'center',
+  },
 
   ['@media (max-width:480px)']: {
     tag: {

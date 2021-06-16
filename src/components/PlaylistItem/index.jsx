@@ -14,6 +14,7 @@ const PlaylistItem = ({ song, handleCloseParent }) => {
   const handleAddToPlaylist = async (playlistTitle, playlistId, song) => {
     delete song.isSelected;
     if (userInfo.id) {
+      handleCloseParent();
       const userDoc = await getDocument('users', userInfo.id);
       let arrSong = [];
       const userPlaylistCopy = { ...userDoc };
@@ -34,7 +35,6 @@ const PlaylistItem = ({ song, handleCloseParent }) => {
       // update
       await updateDoc('users', userInfo.id, userPlaylistCopy);
       await updateDoc('playlists', playlistCopy.id, playlistCopy);
-      handleCloseParent();
       notify(`Thêm vào playlist ${playlistTitle} thành công`);
     }
   };

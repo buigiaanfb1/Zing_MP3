@@ -11,10 +11,10 @@ import Song from '../Song';
 import { motion } from 'framer-motion';
 import { pageAnimation } from '../../common/animation';
 import { useStyles } from './styles';
+import Header from '../Header';
 
 const Playlist = (props) => {
   const id = props.match.params.id;
-  console.log('Playlist re-render');
   const classes = useStyles();
   const [songCurrent, setSongCurrent] = useState(null);
   const [render, setRender] = useState(1);
@@ -23,8 +23,6 @@ const Playlist = (props) => {
   const dispatch = useDispatch();
   // get album từ store
   const album = useSelector((state) => state.shareStore.selectedAlbum);
-
-  console.log(albumFirst);
 
   useEffect(() => {
     handleGetAlbum();
@@ -91,7 +89,7 @@ const Playlist = (props) => {
       >
         <div className={classes.root}>
           <Grid container spacing={5}>
-            <Grid item lg={3} md={3}>
+            <Grid item lg={3} md={4} sm={12} xs={12}>
               <img
                 src={albumFirst.cover ? albumFirst.cover : defaultCoverSong}
                 alt=""
@@ -111,7 +109,7 @@ const Playlist = (props) => {
                 <Typography className={classes.createdBy}>Công khai</Typography>
               </div>
             </Grid>
-            <Grid item lg={9} md={8}>
+            <Grid item lg={9} md={8} sm={12} xs={12}>
               {albumFirst.songs.map((song, index) => {
                 return (
                   <div
@@ -134,7 +132,7 @@ const Playlist = (props) => {
     return (
       <div className={classes.root}>
         <Grid container spacing={5}>
-          <Grid item lg={3} md={4}>
+          <Grid item lg={3} md={4} sm={12} xs={12}>
             <img
               src={albumFirst.cover ? albumFirst.cover : defaultCoverSong}
               alt=""
@@ -150,7 +148,7 @@ const Playlist = (props) => {
               </Typography>
             </div>
           </Grid>
-          <Grid item lg={9} md={8}>
+          <Grid item lg={9} md={8} sm={12} xs={12}>
             {album.songs.map((song, index) => {
               return (
                 <div
@@ -184,9 +182,13 @@ const Playlist = (props) => {
   };
 
   return (
-    <div className={`${classes.container} ${classes.bodyScroll}`}>
-      {handleRenderSongs()}
-    </div>
+    <>
+      <Header />
+      <div className={`${classes.container} ${classes.bodyScroll}`}>
+        {handleRenderSongs()}
+        <div style={{ height: '90px' }}></div>
+      </div>
+    </>
   );
 };
 

@@ -85,7 +85,7 @@ const Navbar = () => {
             <Typography className={classes.toolText}>Khám Phá</Typography>
           </NavLink>
         </div>
-        {handleSignInPopUp()}
+        {!isTablet ? handleSignInPopUp() : ''}
       </div>
     </div>
   );

@@ -138,17 +138,14 @@ const PlayerControlForPhone = () => {
                   </div>
                   <div className={classes.containerText}>
                     <Typography className={classes.title}>
-                      {song.title.length > 20
-                        ? song.title.substr(0, 20) + '...'
+                      {song.title.length > 15
+                        ? song.title.substr(0, 15) + '...'
                         : song.title}
                     </Typography>
                     <Typography className={classes.author}>
                       {song.artist}
                     </Typography>
                   </div>
-                  {/* <div className={classes.tools}>
-                    <BaCham song={song} />
-                  </div> */}
                 </div>
               </Grid>
               <Grid item xs={5}>

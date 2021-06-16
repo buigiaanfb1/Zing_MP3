@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 const Album = ({ albums, title }) => {
   const classes = useStyles();
   const ref = useRef({});
-  console.log(albums);
   // next, previous button initial for slick-slider
   const next = () => {
     ref.current.slickNext();

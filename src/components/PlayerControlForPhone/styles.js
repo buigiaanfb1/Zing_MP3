@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   container: {
-    padding: '0 20px',
+    padding: '0 10px',
     height: '90px',
     color: 'var(--main-text)',
     borderTop: '1px solid var(--border-primary)',
@@ -36,14 +36,14 @@ export const useStyles = makeStyles((theme) => ({
     // justifyContent: 'space-between',
     // transform: 'translateX(20px)',
   },
+
   containerAvatar: {
-    width: '37%',
+    width: '25%',
   },
 
   avatar: {
-    width: '100%',
-    width: '45px',
-    height: '45px',
+    maxWidth: '50px',
+    maxHeight: '50px',
     borderRadius: '50%',
     border: '2px solid #fafafa',
   },
@@ -111,5 +111,25 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  ['@media (max-width:480px)']: {
+    containerAvatar: {
+      width: '40%',
+    },
+    avatar: {
+      maxWidth: '45px',
+      maxHeight: '45px',
+    },
+  },
+
+  ['@media (max-width:320px)']: {
+    containerAvatar: {
+      width: '50%',
+    },
+    avatar: {
+      maxWidth: '45px',
+      maxHeight: '45px',
+    },
   },
 }));

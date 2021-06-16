@@ -13,8 +13,18 @@ const MyLibrary = () => {
       <div className={classes.menu}>
         <div className={classes.menuItems}>
           <Typography className={classes.menuSelected}>Bài hát</Typography>
-          <Typography className={classes.menuNotSelected}>Playlist</Typography>
-          <Typography className={classes.menuNotSelected}>Tải lên</Typography>
+          <Typography
+            className={classes.menuNotSelected}
+            style={{ cursor: 'not-allowed' }}
+          >
+            Playlist
+          </Typography>
+          <Typography
+            className={classes.menuNotSelected}
+            style={{ cursor: 'not-allowed' }}
+          >
+            Tải lên
+          </Typography>
         </div>
       </div>
       <Songs />

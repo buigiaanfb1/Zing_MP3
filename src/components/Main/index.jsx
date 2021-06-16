@@ -77,24 +77,26 @@ const Main = () => {
     }
   };
   return (
-    <motion.div
-      variants={pageAnimation}
-      initial="hidden"
-      animate="show"
-      exit="exit"
-    >
+    <>
       {/* <Header isScrollMoreThanZero={y} /> */}
-      <div
-        className={`${classes.container} ${classes.bodyScroll}`}
-        onScroll={handleScroll}
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
       >
-        {!isMobile ? (
-          <div>{handleRenderAlbums()}</div>
-        ) : (
-          <MainForMobile albums={albums} />
-        )}
-      </div>
-    </motion.div>
+        <div
+          className={`${classes.container} ${classes.bodyScroll}`}
+          // onScroll={handleScroll}
+        >
+          {!isMobile ? (
+            <div>{handleRenderAlbums()}</div>
+          ) : (
+            <MainForMobile albums={albums} />
+          )}
+        </div>
+      </motion.div>
+    </>
   );
 };
 

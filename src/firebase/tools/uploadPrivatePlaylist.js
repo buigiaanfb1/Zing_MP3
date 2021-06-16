@@ -22,12 +22,10 @@ export const uploadPrivatePlaylist = async (
   // Chưa có playlist (người mới) thì tự tạo 1 cái.
   const { addDoc } = setCollection('playlists');
   const docPlaylist = await addDoc(newDocPlaylist);
-  console.log(newDocPlaylist);
   arrPlaylists.push({ ...newDocPlaylist, id: docPlaylist.id });
   // Chưa có user (người mới) thì tự tạo 1 cái.
   if (!docUser) {
     // new doc users
-    console.log('newbie');
     let newDocUser = {
       userId: userId,
       userName: displayName,
@@ -38,10 +36,7 @@ export const uploadPrivatePlaylist = async (
     };
     const { addDocForPrivate } = setCollection('users');
     await addDocForPrivate(newDocUser, userId);
-    console.log('Success');
   } else {
-    console.log('old account');
-    console.log(docUser);
     let copyDocUser = { ...docUser };
     let arrPlaylists = [
       ...copyDocUser.playlists,

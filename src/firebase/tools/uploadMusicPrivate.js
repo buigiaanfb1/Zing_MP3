@@ -14,12 +14,10 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
   const { url: songUrl } = await uploadMusic(file);
   //   parse ra để lấy hình ảnh, tên artist,....
   const info = await parseSongMp3(file);
-  console.log(info);
   // tạo mảng hứng giá trị
   let arrSongs = [];
   //   Check < 1 là người mới
   if (!res) {
-    console.log('newbie');
     if (info?.picture) {
       const { url: imgSongUrl } = await uploadImageSong(
         file,
@@ -42,11 +40,9 @@ export const uploadMusicPrivate = async (file, userId, displayName) => {
       },
       userId
     );
-    console.log('Success');
 
     // Có rồi thi update
   } else {
-    console.log('old account');
     // Copy ra địa chỉ mới
     let dataArray = { ...res };
     if (dataArray.songs) {

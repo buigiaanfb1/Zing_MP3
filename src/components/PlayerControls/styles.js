@@ -38,13 +38,32 @@ export const useStyles = makeStyles((theme) => ({
   left: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.5rem',
     // transform: 'translateX(20px)',
   },
 
+  title: {
+    fontSize: '14px',
+    fontWeight: '700',
+  },
+  author: {
+    fontSize: '12px',
+    fontWeight: '500',
+    opacity: '0.7',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+  },
+
+  containerAvatar: {
+    marginRight: '1rem',
+  },
+
+  containerText: {
+    marginRight: '0.5rem',
+  },
   avatar: {
-    width: '60px',
-    height: '60px',
+    maxWidth: '100%',
+    maxHeight: '60px',
     borderRadius: '50%',
     border: '2px solid #fafafa',
   },

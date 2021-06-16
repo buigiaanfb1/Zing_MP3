@@ -12,25 +12,14 @@ export const useStyles = makeStyles((theme) => ({
     padding: '0 30px',
     zIndex: '99',
     minWidth: '660px',
-    backgroundColor: 'transparent',
+    backgroundColor: 'var(--layout-bg)',
+    boxShadow: '0 3px 5px rgba(0,0,0,0.1)',
     transition: 'all 0.5s linear',
-  },
-  ['@media (max-width:980px)']: {
-    header: {
-      display: 'none',
-    },
   },
 
   backgroundMoreThanZero: {
     backgroundColor: 'var(--layout-bg)',
     boxShadow: '0 3px 5px rgba(0,0,0,0.1)',
-  },
-
-  ['@media (min-width:1637px)']: {
-    // transform: 'translate(-100%, 0%)',
-    header: {
-      right: '320px',
-    },
   },
 
   direct: {
@@ -87,5 +76,26 @@ export const useStyles = makeStyles((theme) => ({
     left: '50%',
     transform: 'translate(-30%, -50%)',
     zIndex: '10',
+  },
+
+  ['@media (min-width:1637px)']: {
+    header: {
+      right: '320px',
+    },
+  },
+
+  ['@media (max-width:1024px)']: {
+    header: {
+      left: '70px',
+    },
+  },
+  ['@media (max-width:680px)']: {
+    header: {
+      minWidth: 'calc(100vw - 70px)',
+      padding: '0 10px',
+    },
+    right: {
+      marginLeft: 'auto',
+    },
   },
 }));

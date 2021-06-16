@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useStyles } from './styles';
 import { getUser } from '../../../firebase/tools/getUser';
 import { useLogout } from '../../../firebase/tools/useLogout';
@@ -12,12 +12,20 @@ import { CLEAR_ALBUM_SIGN_OUT } from './modules/constants';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { pageAnimation } from '../../../common/animation';
+import Header from '../../../components/Header';
 
 const MyMusic = () => {
   const classes = useStyles();
   const { res: user } = getUser();
+  const [y, setY] = useState(false);
   const { error, logout } = useLogout();
   const dispatch = useDispatch();
+
+  const handleScroll = (e) => {
+    // in ra 1 4 10,....
+    let current = e.target.scrollTop;
+    current > 0 ? setY(true) : setY(false);
+  };
 
   const handleLogout = () => {
     logout();
@@ -29,44 +37,50 @@ const MyMusic = () => {
     }
   };
   return (
-    <motion.div
-      variants={pageAnimation}
-      initial="hidden"
-      animate="show"
-      exit="exit"
-    >
-      <div className={`${classes.container} ${classes.bodyScroll}`}>
-        <Grid container spacing={0}>
-          <Grid item xs={2} md={4}></Grid>
-          <Grid item xs={8} md={4}>
-            <div className={`${classes.avatarContainer}`}>
-              <img
-                src={user.photoURL}
-                alt="avatar"
-                className={classes.avatar}
-              />
-              <Typography className={classes.name}>
-                {user.displayName}
-              </Typography>
-            </div>
-          </Grid>
-          <Grid item xs={2} md={4}>
-            <div style={{ paddingTop: '89px' }}>
-              <div
-                className={classes.iconContainer}
-                onClick={(e) => handleLogout()}
-              >
-                <ExitToAppIcon className={classes.iconSignOut} />
-                <div className={classes.popOver}>
-                  <PopOver text="Đăng Xuất" />
+    <>
+      <Header isScrollMoreThanZero={y} />
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+      >
+        <div
+          className={`${classes.container} ${classes.bodyScroll}`}
+          onScroll={handleScroll}
+        >
+          <Grid container spacing={0}>
+            <Grid item xs={2} md={4}></Grid>
+            <Grid item xs={8} md={4}>
+              <div className={`${classes.avatarContainer}`}>
+                <img
+                  src={user.photoURL}
+                  alt="avatar"
+                  className={classes.avatar}
+                />
+                <Typography className={classes.name}>
+                  {user.displayName}
+                </Typography>
+              </div>
+            </Grid>
+            <Grid item xs={2} md={4}>
+              <div style={{ paddingTop: '89px' }}>
+                <div
+                  className={classes.iconContainer}
+                  onClick={(e) => handleLogout()}
+                >
+                  <ExitToAppIcon className={classes.iconSignOut} />
+                  <div className={classes.popOver}>
+                    <PopOver text="Đăng Xuất" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </Grid>
           </Grid>
-        </Grid>
-        <MyLibrary />
-      </div>
-    </motion.div>
+          <MyLibrary />
+        </div>
+      </motion.div>
+    </>
   );
 };
 

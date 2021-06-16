@@ -10,7 +10,6 @@ import { pageAnimation } from '../../../common/animation';
 
 const Album = (props) => {
   const id = props.match.params.id;
-  console.log('Album re-render');
   const classes = useStyles();
   const [songCurrent, setSongCurrent] = useState(null);
   const [render, setRender] = useState(1);
@@ -20,7 +19,6 @@ const Album = (props) => {
   // get album từ store
   const album = useSelector((state) => state.shareStore.selectedAlbum);
 
-  console.log(albumFirst);
   useEffect(() => {
     handleGetAlbum();
   }, []);
@@ -64,7 +62,6 @@ const Album = (props) => {
   // component khác sử dụng
   // Chặn dispatch nếu click vào bài đang hát (giúp k bị re-render)
   const handleDispatchSong = (song, songTitle) => {
-    console.log(song, songTitle);
     if (songTitle !== songCurrent) {
       dispatch({
         type: SELECTED_SONG,
@@ -87,7 +84,7 @@ const Album = (props) => {
       >
         <div className={classes.root}>
           <Grid container spacing={3}>
-            <Grid item lg={3} md={4}>
+            <Grid item lg={3} md={4} sm={12}>
               <img
                 src={albumFirst.cover}
                 alt=""
@@ -100,7 +97,7 @@ const Album = (props) => {
                 </Typography>
               </div>
             </Grid>
-            <Grid item lg={9} md={8}>
+            <Grid item lg={9} md={8} sm={12}>
               {albumFirst.songs.map((song, index) => {
                 return (
                   <div
@@ -123,7 +120,7 @@ const Album = (props) => {
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
-          <Grid item lg={3} md={4}>
+          <Grid item lg={3} md={4} sm={12}>
             <img
               src={album.cover}
               alt=""
@@ -136,7 +133,7 @@ const Album = (props) => {
               </Typography>
             </div>
           </Grid>
-          <Grid item lg={9} md={8}>
+          <Grid item lg={9} md={8} sm={12}>
             {album.songs.map((song, index) => {
               return (
                 <div

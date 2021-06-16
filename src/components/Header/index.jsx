@@ -15,7 +15,6 @@ import PopOver from '../PopOver';
 import notify from '../../common/toastify';
 
 const Header = ({ isScrollMoreThanZero }) => {
-  console.log('header');
   const classes = useStyles();
   let history = useHistory();
   const [goBack, setGoBack] = useState(null);
@@ -103,10 +102,13 @@ const Header = ({ isScrollMoreThanZero }) => {
             </div>
           </div>
         </label>
-        <div className={classes.iconContainer}>
+        <div
+          className={classes.iconContainer}
+          style={{ cursor: 'not-allowed' }}
+        >
           <SettingsIcon className={classes.icon} />
           <div className={classes.popOver}>
-            <PopOver text="Cài đặt" />
+            <PopOver text="Sắp ra mắt" />
           </div>
         </div>
         <div className={classes.iconContainer}>

@@ -139,12 +139,14 @@ const PlayerControls = () => {
                     />
                   </div>
                   <div className={classes.containerText}>
-                    <Typography>
+                    <Typography className={classes.title}>
                       {song.title.length > 20
                         ? song.title.substr(0, 20) + '...'
                         : song.title}
                     </Typography>
-                    <Typography variant="caption">{song.artist}</Typography>
+                    <Typography className={classes.author}>
+                      {song.artist}
+                    </Typography>
                   </div>
                   <div className={classes.tools}>
                     <BaCham song={song} />

@@ -10,7 +10,6 @@ export const parseSongMp3 = async (file) => {
   };
   return await mmb.parseBlob(file).then((metadata) => {
     if (metadata.common?.picture) {
-      console.log('yes picture');
       const image = metadata.common.picture[0];
       var base64String = '';
       for (var i = 0; i < image.data.length; i++) {
@@ -20,15 +19,12 @@ export const parseSongMp3 = async (file) => {
         'data:' + image.format + ';base64,' + window.btoa(base64String);
     }
     if (metadata.common?.title) {
-      console.log('yes title');
       info.title = metadata.common.title;
     }
     if (metadata.common?.artist) {
-      console.log('yes artist');
       info.artist = metadata.common.artist;
     }
     if (metadata.format?.duration) {
-      console.log('yes duration');
       info.duration = metadata.format.duration;
     }
     return info;

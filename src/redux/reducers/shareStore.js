@@ -71,7 +71,6 @@ export default (state = initialState, { type, payload }) => {
 
     case ADD_SONG_TO_QUEUE: {
       delete payload.isSelected;
-      console.log(payload);
       let selectedAlbumCopy = { ...state.selectedAlbum };
       selectedAlbumCopy.songs = [...selectedAlbumCopy.songs, payload];
       state.selectedAlbum = { ...selectedAlbumCopy };
@@ -128,7 +127,6 @@ export default (state = initialState, { type, payload }) => {
           i > 0
         ) {
           previousSong = copySelectedAlbum.songs[i - 1];
-          console.log(previousSong);
           break;
         }
         // nếu là bài đầu thì nhảy xuống cuối playlist
