@@ -1,7 +1,6 @@
 import { Typography } from '@material-ui/core';
-import React, { useMemo } from 'react';
+import React from 'react';
 import Songs from './Songs';
-import { getUser } from '../../firebase/tools/getUser';
 import { useStyles } from './styles';
 import MyPlaylists from '../MyPlaylists';
 

@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import Album from '../Album';
-import Header from '../Header';
-import daw from '../../assets/images/album1.jpeg';
 import { useStyles } from './styles';
 import { motion } from 'framer-motion';
 import { pageAnimation } from '../../common/animation';
@@ -12,7 +10,7 @@ import MainForMobile from '../MainForMobile';
 const Main = () => {
   const classes = useStyles();
   const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
-  const [y, setY] = useState(false);
+  // const [y, setY] = useState(false);
   const albums = useSelector((state) => state.shareStore.albums);
   const title = [
     '',
@@ -24,11 +22,11 @@ const Main = () => {
   ];
 
   // Xác định vị trí người dùng đang đứng bằng như sau
-  const handleScroll = (e) => {
-    // in ra 1 4 10,....
-    let current = e.target.scrollTop;
-    current > 0 ? setY(true) : setY(false);
-  };
+  // const handleScroll = (e) => {
+  //   // in ra 1 4 10,....
+  //   let current = e.target.scrollTop;
+  //   current > 0 ? setY(true) : setY(false);
+  // };
 
   // render album
   const handleRenderAlbums = () => {

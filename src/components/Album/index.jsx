@@ -75,7 +75,7 @@ const Album = ({ albums, title }) => {
   const handleRenderAlbum = () => {
     return albums.map((album, index) => {
       return (
-        <Link to={`/album/${album.id}`} className={classes.a}>
+        <Link to={`/album/${album.id}`} className={classes.a} key={index}>
           <div className={classes.containerAlbum} key={index}>
             <div className={classes.containerImageAlbum}>
               <img src={album.cover} className={classes.imageAlbum} />

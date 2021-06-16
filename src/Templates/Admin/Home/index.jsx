@@ -5,8 +5,17 @@ import { setCollection } from '../../../firebase/tools/setCollection';
 import { parseSongMp3 } from '../../../common/handleParseFile';
 import { useStyles } from './styles';
 import notify from '../../../common/toastify';
+import { getUser } from '../../../firebase/tools/getUser';
+import { useMemo } from 'react';
+import history from '../../../history';
 
 const Home = () => {
+  useMemo(() => {
+    const { res } = getUser();
+    if (res.email !== 'buigiaanfb1@gmail.com') {
+      history.push('/');
+    }
+  });
   const classes = useStyles();
   const [content, setContent] = useState({
     albumTitle: '',

@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import albumDefault from '../../assets/images/album_default.png';
 import Slider from 'react-slick';
@@ -10,7 +10,6 @@ import ArrowForwardIosOutlinedIcon from '@material-ui/icons/ArrowForwardIosOutli
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import { useStyles } from './styles';
 
 const MyPlaylists = () => {
